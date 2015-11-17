@@ -22,6 +22,7 @@ import src.dataStore.DataStore;
 import src.multiThreading.threads.TaskThread;
 import src.screens.editorScreen.libraryPanel.mediaPanel.album.media.MediaImageItem;
 import src.thirdPartyLibraries.Scalr;
+import src.thirdPartyLibraries.audio.MP3;
 import src.util.ImageUtils;
 
 
@@ -465,7 +466,7 @@ public class IntroScreen extends JPanel
 				//NewJApplet.instance.getjInternalFrame1().setVisible(true);
 			//	NewJApplet.instance.getjLayeredPane1().moveToFront(NewJApplet.instance.getjPanel16());
 				
-
+				MP3.sendMp3(2, 0);
 			}
 			
 			
@@ -503,7 +504,7 @@ public class IntroScreen extends JPanel
 		
 		
 		animationRunning = true;
-
+		MP3.sendMp3(1, 0);
 	}
 	
 	public static Image rotateImage(BufferedImage image2, double radius){

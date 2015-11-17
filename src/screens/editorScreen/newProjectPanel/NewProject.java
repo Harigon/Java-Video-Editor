@@ -14,6 +14,9 @@ import src.ImagePanel;
 import src.MainApplet;
 import src.Project;
 import src.renderer.Renderer;
+import src.thirdPartyLibraries.AnimatedGifEncoder;
+import src.thirdPartyLibraries.movLibrary.JPEGMovWriter;
+import src.thirdPartyLibraries.movLibrary.MovWriter;
 import src.util.Misc;
 import sun.misc.GC;
 

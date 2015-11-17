@@ -22,6 +22,7 @@ import src.screens.editorScreen.timeline.track.trackItem.TrackItem;
 import src.screens.editorScreen.timeline.track.TrackManager;
 import src.screens.editorScreen.timeline.track.VideoTrack;
 import src.screens.editorScreen.timeline.track.trackItem.TrackAudioItem;
+import src.thirdPartyLibraries.audio.jl.player.advanced.AdvancedPlayer;
 
 /**
  * @author Harry
@@ -78,7 +79,44 @@ public class TimelineManager {
 		
 		Track track = TimelineManager.getFirstAudioTrack();
 		System.out.println("playing");
-		
+		for(TrackItem item : track.trackItems){
+			if(item instanceof TrackAudioItem){
+				final TrackAudioItem audioItem = (TrackAudioItem) item;
+				if(audioItem.advancedPlayer == null){
+					
+					
+					
+				if(timelinePosition > item.trackStartPosition){
+					
+					MediaAudioItem mediaAudioItem = (MediaAudioItem) audioItem.mediaItem;
+					
+					try {
+						BufferedInputStream bis;
+						bis = new BufferedInputStream(new FileInputStream(new File(mediaAudioItem.directory)));
+						
+						audioItem.advancedPlayer = new AdvancedPlayer(bis, 0);
+						/*
+						 * run in new thread to play in background
+						 */
+						new Thread() {
+							public void run() {
+								try { 
+									
+									audioItem.advancedPlayer.play();
+								}
+								catch (Exception e) { 
+									System.out.println(e); 
+								}
+							}
+						}.start();
+					
+					//lol
+					} catch (Exception e) {
+					}
+				}
+				}
+			}
+		}
 		
 	}
 	

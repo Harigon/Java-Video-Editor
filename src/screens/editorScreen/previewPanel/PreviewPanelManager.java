@@ -14,7 +14,6 @@ public class PreviewPanelManager {
 	 */
 	public static void refreshViewModeButtons(){
 
-
 	}
 	
 	

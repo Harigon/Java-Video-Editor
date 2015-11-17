@@ -94,8 +94,12 @@ public class MediaPanel extends JPanel
 	@Override
 	protected void paintComponent(Graphics g)
 	{	
-            try {
 
+            try {
+                
+            
+            
+            
 		if(true){
 			//return;
 		}
@@ -111,7 +115,7 @@ public class MediaPanel extends JPanel
 
 		super.paintComponent(g);
 
-
+                
 
 		Dimension size = this.getSize();
 
@@ -133,7 +137,7 @@ public class MediaPanel extends JPanel
 		int rowCount = 0;
 		int height = 0;
 
-
+                
 		if(MediaPanelManager.albums.size() > MediaManager.selectedAlbum){
 
 			Album album = MediaPanelManager.albums.get(MediaManager.selectedAlbum);
@@ -239,15 +243,16 @@ public class MediaPanel extends JPanel
 			}
 
 		}
+                
+                
 		//NewJApplet.instance.getMediaPanel1().set
 		MainApplet.getInstance().getMediaPanel1().setPreferredSize(new Dimension(MainApplet.getInstance().getjScrollPane8().getWidth()-20,height*(transitionHeight+10)));
 		MainApplet.getInstance().getMediaPanel1().revalidate();
-
-	
+                } catch (Exception e) {
+                
+                }
+	}
             
-        } catch (Exception e){
-        
-           }
-}
+            
 
 }

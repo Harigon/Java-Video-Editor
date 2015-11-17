@@ -6,6 +6,7 @@ import java.io.IOException;
 
 import src.dataStore.DataStore;
 import src.screens.editorScreen.libraryPanel.mediaPanel.album.Album;
+import src.thirdPartyLibraries.mp3transform.main.org.mp3transform.wav.WavConverter;
 import src.util.Misc;
 
 public  class MediaAudioItem extends MediaItem{
@@ -27,6 +28,7 @@ public  class MediaAudioItem extends MediaItem{
 		String out = DataStore.getLocation()+"temp.wav";
 
 		try {
+			WavConverter.convert(in, out);
 
 			File file = new File(out);
 

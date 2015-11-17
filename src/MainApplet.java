@@ -53,6 +53,7 @@ import src.screens.editorScreen.timeline.track.trackItem.TrackItem;
 import src.screens.editorScreen.timeline.track.transition.Transition;
 import src.screens.editorScreen.timeline.track.transition.transitions.Fade;
 import src.screens.editorScreen.timeline.track.transition.transitions.WipeDown;
+import src.thirdPartyLibraries.mp3transform.main.org.mp3transform.wav.WavConverter;
 import src.screens.editorScreen.libraryPanel.mediaPanel.album.media.MediaVideoItem;
 
 /**
@@ -60,8 +61,6 @@ import src.screens.editorScreen.libraryPanel.mediaPanel.album.media.MediaVideoIt
  * @author Harry
  */
 public class MainApplet extends javax.swing.JApplet {
-	public MainApplet() {
-	}
 
 
 	public static MainApplet instance;
@@ -373,6 +372,9 @@ public class MainApplet extends javax.swing.JApplet {
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
+        videoSlider1 = new src.VideoSlider();
+        jButton4 = new javax.swing.JButton();
+        jButton5 = new javax.swing.JButton();
         jSplitPane4 = new javax.swing.JSplitPane();
         jScrollPane2 = new javax.swing.JScrollPane();
         trackManagerPanel1 = new src.TrackManagerPanel();
@@ -607,7 +609,7 @@ public class MainApplet extends javax.swing.JApplet {
             .addGroup(jPanel21Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(customRealButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(287, Short.MAX_VALUE))
         );
 
         customRealButton2.setIcon(DataStore.getImageIcon(9));
@@ -645,7 +647,7 @@ public class MainApplet extends javax.swing.JApplet {
         );
         mediaPanel1Layout.setVerticalGroup(
             mediaPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 316, Short.MAX_VALUE)
+            .addGap(0, 257, Short.MAX_VALUE)
         );
 
         jScrollPane8.setViewportView(mediaPanel1);
@@ -658,7 +660,10 @@ public class MainApplet extends javax.swing.JApplet {
         );
         jPanel22Layout.setVerticalGroup(
             jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane8, javax.swing.GroupLayout.Alignment.TRAILING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel22Layout.createSequentialGroup()
+                .addGap(26, 26, 26)
+                .addComponent(jScrollPane8, javax.swing.GroupLayout.DEFAULT_SIZE, 255, Short.MAX_VALUE)
+                .addGap(37, 37, 37))
         );
 
         jPanel23.setBackground(new java.awt.Color(102, 102, 102));
@@ -672,7 +677,7 @@ public class MainApplet extends javax.swing.JApplet {
         );
         jPanel23Layout.setVerticalGroup(
             jPanel23Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 318, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
@@ -707,7 +712,7 @@ public class MainApplet extends javax.swing.JApplet {
             .addGap(0, 320, Short.MAX_VALUE)
         );
 
-        jTabbedPane1.addTab("", jPanel6);
+        jTabbedPane1.addTab("Text", jPanel6);
 
         jPanel4.setBackground(new java.awt.Color(98, 98, 98));
 
@@ -955,7 +960,7 @@ public class MainApplet extends javax.swing.JApplet {
             }
         });
 
-        jTabbedPane1.addTab("", jPanel4);
+        jTabbedPane1.addTab("Transitions", jPanel4);
 
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
         jPanel8.setLayout(jPanel8Layout);
@@ -968,7 +973,7 @@ public class MainApplet extends javax.swing.JApplet {
             .addGap(0, 320, Short.MAX_VALUE)
         );
 
-        jTabbedPane1.addTab("", jPanel8);
+        jTabbedPane1.addTab("Effects", jPanel8);
 
         jPanel3.setBackground(new java.awt.Color(136, 136, 136));
 
@@ -1240,7 +1245,7 @@ public class MainApplet extends javax.swing.JApplet {
         customRealButton1.setRolloverIcon(DataStore.getImageIcon(7));
         customRealButton1.setBorder(null);
 
-        jTabbedPane1.addTab("", jPanel3);
+        jTabbedPane1.addTab("         Export          ", jPanel3);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -1278,7 +1283,7 @@ public class MainApplet extends javax.swing.JApplet {
         imagePanel1.setLayout(imagePanel1Layout);
         imagePanel1Layout.setHorizontalGroup(
             imagePanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 656, Short.MAX_VALUE)
+            .addGap(0, 778, Short.MAX_VALUE)
         );
         imagePanel1Layout.setVerticalGroup(
             imagePanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1334,20 +1339,53 @@ public class MainApplet extends javax.swing.JApplet {
             }
         });
 
+        jButton4.setIcon(DataStore.getImageIcon(16));
+
+        jButton4.setSelectedIcon(DataStore.getImageIcon(16));
+        jButton4.setRolloverEnabled(true); // turn on before rollovers work
+        jButton4.setRolloverIcon(DataStore.getImageIcon(16));
+        jButton4.setBorder(null);
+
+        jButton5.setIcon(DataStore.getImageIcon(16));
+
+        jButton5.setSelectedIcon(DataStore.getImageIcon(16));
+        jButton5.setRolloverEnabled(true); // turn on before rollovers work
+        jButton5.setRolloverIcon(DataStore.getImageIcon(16));
+        jButton5.setBorder(null);
+
+        javax.swing.GroupLayout videoSlider1Layout = new javax.swing.GroupLayout(videoSlider1);
+        videoSlider1.setLayout(videoSlider1Layout);
+        videoSlider1Layout.setHorizontalGroup(
+            videoSlider1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(videoSlider1Layout.createSequentialGroup()
+                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 720, Short.MAX_VALUE)
+                .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+        videoSlider1Layout.setVerticalGroup(
+            videoSlider1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
+
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
         jPanel7Layout.setHorizontalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel7Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jToggleButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(532, Short.MAX_VALUE))
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel7Layout.createSequentialGroup()
+                        .addComponent(jToggleButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(videoSlider1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
             .addComponent(imagePanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel7Layout.setVerticalGroup(
@@ -1355,7 +1393,9 @@ public class MainApplet extends javax.swing.JApplet {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(imagePanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(37, 37, 37)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(videoSlider1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jToggleButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1403,7 +1443,7 @@ public class MainApplet extends javax.swing.JApplet {
         );
         trackManagerPanel1Layout.setVerticalGroup(
             trackManagerPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1191, Short.MAX_VALUE)
+            .addGap(0, 1239, Short.MAX_VALUE)
         );
 
         jScrollPane2.setViewportView(trackManagerPanel1);
@@ -1458,11 +1498,11 @@ public class MainApplet extends javax.swing.JApplet {
         timeline2.setLayout(timeline2Layout);
         timeline2Layout.setHorizontalGroup(
             timeline2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1126, Short.MAX_VALUE)
+            .addGap(0, 1248, Short.MAX_VALUE)
         );
         timeline2Layout.setVerticalGroup(
             timeline2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 612, Short.MAX_VALUE)
+            .addGap(0, 1222, Short.MAX_VALUE)
         );
 
         jScrollPane3.setViewportView(timeline2);
@@ -1505,7 +1545,7 @@ public class MainApplet extends javax.swing.JApplet {
         );
 
         jLayeredPane1.add(jPanel16);
-        jPanel16.setBounds(0, 0, 1285, 918);
+        jPanel16.setBounds(0, 0, 1407, 918);
         //jPanel16.setBounds(0, 0, jLayeredPane1.getWidth(), jLayeredPane1.getHeight());
         //jPanel16.repaint();
         jPanel16.hide();
@@ -3076,6 +3116,7 @@ public class MainApplet extends javax.swing.JApplet {
 					MediaVideoItem mediaVideoItem = (MediaVideoItem)MediaPanel.draggedMediaItem;
 					size = mediaVideoItem.totalFrames;
 				}
+
 				
 				
 				if(distance < size && distance != -1){
@@ -3488,18 +3529,6 @@ private void chromaKeyFrame1MouseReleased(java.awt.event.MouseEvent evt) {//GEN-
 public void refreshAlbumNameList(){
 
 
-
-	String[] names = new String[MediaPanelManager.albums.size()];
-
-	for(int index = 0; index < MediaPanelManager.albums.size(); index++){
-		if(MediaPanelManager.albums.get(index).albumName.length() == 0){
-			names[index] = "Unnamed";
-		} else {
-			names[index] = MediaPanelManager.albums.get(index).albumName;
-		}
-	}
-
-
 }
 
 	private void jScrollPane2Change(ChangeEvent e) {
@@ -3894,7 +3923,20 @@ public void refreshAlbumNameList(){
 	public javax.swing.JLabel getjLabel23() {
 		return jLabel23;
 	}
+    public void setCustomButton2(src.CustomButton customButton2) {
 
+	}
+
+	public src.CustomButton getCustomButton2() {
+		return null;
+	}
+	public void setCustomButton1(src.CustomButton customButton1) {
+		
+	}
+
+	public src.CustomButton getCustomButton1() {
+		return null;
+	}
     public void setjTextField8(javax.swing.JTextField jTextField8) {
 		this.jTextField8 = jTextField8;
 	}
@@ -3968,6 +4010,8 @@ public void refreshAlbumNameList(){
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
     private javax.swing.JCheckBox jCheckBox1;
@@ -4113,5 +4157,6 @@ public void refreshAlbumNameList(){
     private src.Timeline timeline2;
     private src.TrackManagerPanel trackManagerPanel1;
     private src.TransitionMediaPanel transitionMediaPanel1;
+    private src.VideoSlider videoSlider1;
     // End of variables declaration//GEN-END:variables
 }

@@ -45,12 +45,7 @@ public class DataStoreDownloader {
 	 */
 	public static boolean downloadRequiredData() {
 		
-		try {
-			MainApplet.instance.getjProgressBar2().setValue(0);
-		} catch (Exception e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
+		MainApplet.instance.getjProgressBar2().setValue(0);
 		
 		try {
 			File location = new File(DataStore.getLocation());

@@ -35,6 +35,8 @@ public class MediaManager {
 		album.mediaItems.add(mediaItem);
 	}
 	
+
+	
 	public static void addVideo(Album album, String directory, int formatType){
 		MediaItem mediaItem = new MediaVideoItem(directory, album, formatType);
 		album.mediaItems.add(mediaItem);

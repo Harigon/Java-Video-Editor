@@ -1,5 +1,8 @@
 package src.screens.editorScreen.libraryPanel.mediaPanel.album.media;
 
+import static asg.jcodec.common.NIOUtils.readableFileChannel;
+import static asg.jcodec.common.NIOUtils.writableFileChannel;
+import static asg.jcodec.containers.mp4.TrackType.VIDEO;
 
 import java.awt.Color;
 import java.awt.Graphics;
@@ -20,7 +23,20 @@ import java.util.List;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 
-
+import asg.jcodec.api.FrameGrab;
+import asg.jcodec.api.JCodecException;
+import asg.jcodec.common.FileChannelWrapper;
+import asg.jcodec.common.JCodecUtil;
+import asg.jcodec.common.NIOUtils;
+import asg.jcodec.common.SeekableByteChannel;
+import asg.jcodec.containers.mp4.Brand;
+import asg.jcodec.containers.mp4.MP4Packet;
+import asg.jcodec.containers.mp4.boxes.AudioSampleEntry;
+import asg.jcodec.containers.mp4.demuxer.AbstractMP4DemuxerTrack;
+import asg.jcodec.containers.mp4.demuxer.MP4Demuxer;
+import asg.jcodec.containers.mp4.muxer.FramesMP4MuxerTrack;
+import asg.jcodec.containers.mp4.muxer.MP4Muxer;
+import asg.jcodec.containers.mp4.muxer.PCMMP4MuxerTrack;
 
 
 
@@ -32,6 +48,8 @@ import src.dataStore.DataStore;
 import src.multiThreading.threads.DecodingThread;
 import src.renderer.Renderer;
 import src.screens.editorScreen.libraryPanel.mediaPanel.album.Album;
+import src.thirdPartyLibraries.Frame;
+import src.thirdPartyLibraries.GifView;
 import src.thirdPartyLibraries.Scalr;
 import src.thirdPartyLibraries.Scalr.Method;
 import src.thirdPartyLibraries.Scalr.Mode;
@@ -70,7 +88,41 @@ public class MediaVideoItem extends MediaItem {
 	public int lastFrame = -1;
 	
 	public boolean busy = false;
-
+	
+	
+	public BufferedImage requestFrame(int frameIndex){
+		while(true){
+			if(!busy){
+				busy = true;
+				try {
+					if(formatType == 1){
+						BufferedImage image;
+						if(frameIndex == lastFrame+1){
+							image = frameGrab.getFrame();
+							System.out.println("grabbed next frame");
+						} else {
+							image = JCodecUtil.toBufferedImage(frameGrab.seekToFramePrecise(frameIndex).getNativeFrame());
+							System.out.println("wag1");
+						}
+						lastFrame = frameIndex;
+						busy = false;
+						
+						if(frameIndex == 0){
+							thumbnail = Scalr.resize(ImagePanel.getBI(image), Scalr.Method.ULTRA_QUALITY, Scalr.Mode.FIT_TO_HEIGHT, 67, null);
+						}
+						
+						
+						return image;
+					}
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			} else {
+				//System.out.println("Busy");
+			}
+		}
+	}
+	
 	public Image getFullFrame(int frameIndex, int width, int height){
 
 		try {
@@ -114,7 +166,83 @@ public class MediaVideoItem extends MediaItem {
 	}
 	
 	public Image getPreviewFrame(int frameIndex){
+		try {
+		if(formatType == 0 || formatType == 1){
+			
+		int width;
+		int height;
+		int[] pixels;
 		
+		//
+		File tempFile = new File(DataStore.getCache()+"/"+getReferenceName()+""+frameIndex+".png");
+		
+		Image image = null;
+		if(tempFile.exists()){
+			image = Toolkit.getDefaultToolkit().getImage(tempFile.getAbsolutePath());
+			ImageIcon imageicon = new ImageIcon(image);
+			width = imageicon.getIconWidth();
+			height = imageicon.getIconHeight();
+			pixels = new int[width * height];
+			PixelGrabber pixelgrabber = new PixelGrabber(image, 0, 0, width, height, pixels, 0, width);
+			pixelgrabber.grabPixels();
+		}
+		
+		if(image == null){
+			BufferedImage unloadedImage = new BufferedImage(Project.getScaledWidth(), Project.getScaledHeight(), BufferedImage.TYPE_INT_ARGB);
+			Graphics g = unloadedImage.getGraphics();
+			g.setColor(new Color(0,0,0));
+			g.fillRect(0, 0, 71, 56);
+			g.setColor(new Color(255,255,255));
+			g.drawString("Importing...", 3, 30);
+			image = unloadedImage;
+		}
+		
+		
+		
+		Image resizedImage = Scalr.resize(ImagePanel.getBI(image), Scalr.Method.ULTRA_QUALITY, Scalr.Mode.FIT_TO_WIDTH, Project.getScaledWidth(), null);
+		if(resizedImage.getHeight(null) >= Project.getScaledHeight()){
+			resizedImage = Scalr.resize(ImagePanel.getBI(image), Scalr.Method.ULTRA_QUALITY, Scalr.Mode.FIT_TO_HEIGHT, Project.getScaledHeight(), null);
+		}
+		
+		return resizedImage;
+		}
+		
+		
+		
+		if(formatType == 3){
+			BufferedImage image;
+			if(frameIndex == lastFrame+1){
+				image = frameGrab.getFrame();
+				
+				System.out.println("unpacked frame: "+frameIndex);
+				
+				
+				//for (int i = 0; i < 20; i++) {
+					  
+					//BufferedImage image2 = frameGrab.getFrame();
+					//System.out.println("unpacked framelol: "+frameIndex+", "+image2.getHeight());
+				//}
+				
+				
+			} else {
+				image = JCodecUtil.toBufferedImage(frameGrab.seekToFramePrecise(frameIndex).getNativeFrame());
+			}
+
+			Image resizedImage = image.getScaledInstance(Project.getScaledWidth(), Project.getScaledHeight(), Image.SCALE_FAST);
+			
+			/*
+			Image resizedImage = Scalr.resize(ImagePanel.getBI(image), Scalr.Method.ULTRA_QUALITY, Scalr.Mode.FIT_TO_WIDTH, Project.getScaledWidth(), null);
+			if(resizedImage.getHeight(null) >= Project.getScaledHeight()){
+				resizedImage = Scalr.resize(ImagePanel.getBI(image), Scalr.Method.ULTRA_QUALITY, Scalr.Mode.FIT_TO_HEIGHT, Project.getScaledHeight(), null);
+			}*/
+			
+			lastFrame = frameIndex;
+			return resizedImage;
+		}
+		
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		return null;
 	}
 	
@@ -123,7 +251,22 @@ public class MediaVideoItem extends MediaItem {
 		 * Decoding GIF
 		 */
 		try {
-
+			GifView gifView = new GifView();
+			gifView.setGifImage(Misc.getBytesFromFile(new File(directory)));
+			gifView.start();
+			
+			int index = 0;
+			
+			//DataOutputStream os = new DataOutputStream(new FileOutputStream(DataStore.getCache()+"/"+getReferenceName()+".dat"));
+			
+			totalFrames = gifView.gifDecoder.frameList.size();
+			
+			for (Frame frame : gifView.gifDecoder.frameList) {
+				BufferedImage bufferedImage = ImagePanel.getBI(frame.pixels, frame.width, frame.height);
+				File picture = new File(DataStore.getCache()+"/"+getReferenceName()+""+index+".png");
+			    ImageIO.write(bufferedImage, "png", picture);
+				index++;
+			}
 
 		} catch (Exception e1) {
 			e1.printStackTrace();
@@ -169,8 +312,65 @@ public class MediaVideoItem extends MediaItem {
 	
 	
 	public void decodeFrame(int frameIndex){
+		try {
+			if(new File(DataStore.getCache()+"/"+getReferenceName()+""+frameIndex+".png").exists()){
+				return;
+			}
+			BufferedImage image = requestFrame(frameIndex);
+			//Image resizedImage = image;
+			Image resizedImage = Scalr.resize(image, Scalr.Method.SPEED, Scalr.Mode.FIT_TO_WIDTH, 300, null);
+			if(resizedImage.getHeight(null) >= Project.getScaledHeight()){
+				resizedImage = Scalr.resize(image, Scalr.Method.SPEED, Scalr.Mode.FIT_TO_HEIGHT, 300, null);
+			}
+			ImageIO.write(ImagePanel.getBI(resizedImage), "png", new File(DataStore.getCache()+"/"+getReferenceName()+""+frameIndex+".png"));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 	
+	
+	public void decodeAudio(FileChannelWrapper input){
+	      /*  try {
+	        	
+	            MP4Demuxer demuxer = new MP4Demuxer(input);
+	            MP4Muxer muxer = new MP4Muxer(output, Brand.MOV);
+
+	            List<AbstractMP4DemuxerTrack> at = demuxer.getAudioTracks();
+	            List<PCMMP4MuxerTrack> audioTracks = new ArrayList<PCMMP4MuxerTrack>();
+	            for (AbstractMP4DemuxerTrack demuxerTrack : at) {
+	                PCMMP4MuxerTrack att = muxer.addUncompressedAudioTrack(((AudioSampleEntry) demuxerTrack.getSampleEntries()[0]).getFormat());
+	                audioTracks.add(att);
+	                att.setEdits(demuxerTrack.getEdits());
+	                att.setName(demuxerTrack.getName());
+	            }
+
+	            AbstractMP4DemuxerTrack vt = demuxer.getVideoTrack();
+	            FramesMP4MuxerTrack video = muxer.addTrackForCompressed(VIDEO, (int) vt.getTimescale());
+	            // vt.open(input);
+	            video.setTimecode(muxer.addTimecodeTrack((int) vt.getTimescale()));
+	            video.setEdits(vt.getEdits());
+	            video.addSampleEntries(vt.getSampleEntries());
+	            MP4Packet pkt = null;
+	            while ((pkt = (MP4Packet)vt.nextFrame()) != null) {
+	               // pkt = processFrame(pkt);
+	                video.addFrame(pkt);
+
+	                for (int i = 0; i < at.size(); i++) {
+	                    AudioSampleEntry ase = (AudioSampleEntry) at.get(i).getSampleEntries()[0];
+	                    int frames = (int) (ase.getSampleRate() * pkt.getDuration() / vt.getTimescale());
+	                    MP4Packet apkt = (MP4Packet)at.get(i).nextFrame();
+	                    audioTracks.get(i).addSamples(apkt.getData());
+	                }
+	            }
+
+	            muxer.writeHeader();
+	        } finally {
+	            if (input != null)
+	                input.close();
+	            if (output != null)
+	                output.close();
+	        }*/
+	}
 	
 	
 	public MediaVideoItem(final String directory, Album album, int formatType) {
@@ -180,11 +380,70 @@ public class MediaVideoItem extends MediaItem {
 		if(formatType == 0){
 			generatePreviewFile();
 		}
-		
+		if(formatType == 1){
+			
+			/*
+			 * Run this process on a separate thread, to stop it freezing the GUI.
+			 */
+			new Thread() {
+				public void run() {
+			try {
+				
+				
+				FileChannelWrapper ch2 = null;
+				ch2 = NIOUtils.readableFileChannel(new File(directory));
+				
+				//double startSec = 51.632;
+				frameGrab = new FrameGrab(ch2);
+				
+				totalFrames = (int) frameGrab.demuxer.getVideoTrack().getFrameCount();
+				
+				double scale = frameGrab.demuxer.getVideoTrack().getTimescale();
+				double duration = frameGrab.demuxer.getVideoTrack().getDuration().getNum();
+				
+				framerate = (double) (scale/duration);
+			
+				System.out.println("fps: "+framerate+", scale: "+scale+", dur: "+duration);
+				
+				framerate = 23;
+				
+				
+				frameDecoded = new byte[totalFrames];
+				
+				File tempFile = new File(DataStore.getCache()+"/"+getReferenceName()+""+0+".png");
+				
+				Image image = null;
+				if(tempFile.exists()){
+					image = Toolkit.getDefaultToolkit().getImage(tempFile.getAbsolutePath());
+					ImageIcon imageicon = new ImageIcon(image);
+					int width = imageicon.getIconWidth();
+					int height = imageicon.getIconHeight();
+					int[] pixels = new int[width * height];
+					PixelGrabber pixelgrabber = new PixelGrabber(image, 0, 0, width, height, pixels, 0, width);
+					pixelgrabber.grabPixels();
+					thumbnail = Scalr.resize(ImagePanel.getBI(image), Scalr.Method.ULTRA_QUALITY, Scalr.Mode.FIT_TO_HEIGHT, 67, null);
+				}
+				
+				
+				
+				
+				
+				DecodingThread.updateDecodingPriority();
+				
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 
+
+
+				}
+	}.start();
+			}
 	}
 
-
+	public FrameGrab frameGrab = null;
+	
 	
 
 	@Override
@@ -199,13 +458,6 @@ public class MediaVideoItem extends MediaItem {
 			return unloadedImage;
 		}
 		return thumbnail;
-	}
-
-
-
-	public BufferedImage requestFrame(int requestedLocalFrame) {
-		// TODO Auto-generated method stub
-		return null;
 	}
 
 

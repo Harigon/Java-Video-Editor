@@ -138,8 +138,7 @@ public class Timeline extends JPanel
 	protected void paintComponent(Graphics g)
 	{	
 
-            
-                try {
+            try {
             
 		hoveredTransition = null;
 		hoveredTrackItem = null;
@@ -492,10 +491,9 @@ public class Timeline extends JPanel
 
 		}
 
-                } catch (Exception e){
-                       
-                }
-		
+            } catch (Exception e){
+                e.printStackTrace();
+            }
 
 	}
 	
