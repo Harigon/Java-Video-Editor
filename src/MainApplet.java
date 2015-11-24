@@ -136,12 +136,7 @@ public class MainApplet extends javax.swing.JApplet {
 							initComponents();
 							
 							MainApplet.getInstance().dataDownloader_mainPanel.setVisible(false);
-							MainApplet.getInstance().getjPanel32().setVisible(false);
-							MainApplet.getInstance().getjPanel16().setVisible(true);
-			
-							TaskThread.editorRunning = true;
-
-							Project.setupProject(NewProject.dimensions[6][0], NewProject.dimensions[6][1], NewProject.frameRates[0]);
+							MainApplet.getInstance().getjPanel15().setVisible(true);
 						
 							
 							 chromaKey.setVisible(false);
@@ -312,9 +307,14 @@ public class MainApplet extends javax.swing.JApplet {
         jPanel5 = new javax.swing.JPanel();
         jPanel21 = new javax.swing.JPanel();
         customRealButton2 = new src.CustomRealButton();
+        customRealButton4 = new src.CustomRealButton();
+        customRealButton5 = new src.CustomRealButton();
         jPanel22 = new javax.swing.JPanel();
         jScrollPane8 = new javax.swing.JScrollPane();
         mediaPanel1 = new src.MediaPanel();
+        customRealButton3 = new src.CustomRealButton();
+        jComboBox3 = new javax.swing.JComboBox();
+        jTextField3 = new javax.swing.JTextField();
         jPanel23 = new javax.swing.JPanel();
         jPanel6 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
@@ -372,6 +372,9 @@ public class MainApplet extends javax.swing.JApplet {
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
+        customButton1 = new src.CustomButton();
+        customButton2 = new src.CustomButton();
+        jLabel1 = new javax.swing.JLabel();
         videoSlider1 = new src.VideoSlider();
         jButton4 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
@@ -576,7 +579,6 @@ public class MainApplet extends javax.swing.JApplet {
         jPanel2.setMinimumSize(new java.awt.Dimension(456, 0));
 
         jTabbedPane1.setBackground(new java.awt.Color(136, 136, 136));
-        jTabbedPane1.setEnabled(false);
 
         jPanel5.setBackground(new java.awt.Color(136, 136, 136));
 
@@ -595,21 +597,52 @@ public class MainApplet extends javax.swing.JApplet {
             }
         });
 
+        customRealButton4.setText("Import Folder");
+        customRealButton4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                customRealButton4MouseReleased(evt);
+            }
+        });
+        customRealButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                customRealButton4ActionPerformed(evt);
+            }
+        });
+
+        customRealButton5.setText("Create New Album");
+        customRealButton5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                customRealButton5MouseReleased(evt);
+            }
+        });
+        customRealButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                customRealButton5ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel21Layout = new javax.swing.GroupLayout(jPanel21);
         jPanel21.setLayout(jPanel21Layout);
         jPanel21Layout.setHorizontalGroup(
             jPanel21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel21Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(customRealButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jPanel21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(customRealButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(customRealButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(customRealButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(6, Short.MAX_VALUE))
         );
         jPanel21Layout.setVerticalGroup(
             jPanel21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel21Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(customRealButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(287, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(customRealButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 230, Short.MAX_VALUE)
+                .addComponent(customRealButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         customRealButton2.setIcon(DataStore.getImageIcon(9));
@@ -618,6 +651,18 @@ public class MainApplet extends javax.swing.JApplet {
         customRealButton2.setRolloverEnabled(true); // turn on before rollovers work
         customRealButton2.setRolloverIcon(DataStore.getImageIcon(7));
         customRealButton2.setBorder(null);
+        customRealButton4.setIcon(DataStore.getImageIcon(9));
+        customRealButton4.setOffset(0);
+        customRealButton4.setSelectedIcon(DataStore.getImageIcon(8));
+        customRealButton4.setRolloverEnabled(true); // turn on before rollovers work
+        customRealButton4.setRolloverIcon(DataStore.getImageIcon(7));
+        customRealButton4.setBorder(null);
+        customRealButton5.setIcon(DataStore.getImageIcon(9));
+        customRealButton5.setOffset(-3);
+        customRealButton5.setSelectedIcon(DataStore.getImageIcon(8));
+        customRealButton5.setRolloverEnabled(true); // turn on before rollovers work
+        customRealButton5.setRolloverIcon(DataStore.getImageIcon(7));
+        customRealButton5.setBorder(null);
 
         jPanel22.setBackground(new java.awt.Color(102, 102, 102));
         jPanel22.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(171, 171, 171)));
@@ -652,19 +697,66 @@ public class MainApplet extends javax.swing.JApplet {
 
         jScrollPane8.setViewportView(mediaPanel1);
 
+        customRealButton3.setText("Add All To Timeline");
+        customRealButton3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                customRealButton3MouseReleased(evt);
+            }
+        });
+        customRealButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                customRealButton3ActionPerformed(evt);
+            }
+        });
+
+        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox3ActionPerformed(evt);
+            }
+        });
+
+        jTextField3.setText("jTextField3");
+        jTextField3.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextField3KeyReleased(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel22Layout = new javax.swing.GroupLayout(jPanel22);
         jPanel22.setLayout(jPanel22Layout);
         jPanel22Layout.setHorizontalGroup(
             jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane8)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel22Layout.createSequentialGroup()
+                .addContainerGap(206, Short.MAX_VALUE)
+                .addComponent(customRealButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel22Layout.createSequentialGroup()
+                .addComponent(jComboBox3, 0, 208, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+            .addComponent(jScrollPane8, javax.swing.GroupLayout.DEFAULT_SIZE, 328, Short.MAX_VALUE)
         );
         jPanel22Layout.setVerticalGroup(
             jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel22Layout.createSequentialGroup()
-                .addGap(26, 26, 26)
+                .addGroup(jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane8, javax.swing.GroupLayout.DEFAULT_SIZE, 255, Short.MAX_VALUE)
-                .addGap(37, 37, 37))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(customRealButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(11, 11, 11))
         );
+
+        customRealButton3.setIcon(DataStore.getImageIcon(9));
+        customRealButton3.setOffset(5);
+        customRealButton3.setSelectedIcon(DataStore.getImageIcon(8));
+        customRealButton3.setRolloverEnabled(true); // turn on before rollovers work
+        customRealButton3.setRolloverIcon(DataStore.getImageIcon(7));
+        customRealButton3.setBorder(null);
 
         jPanel23.setBackground(new java.awt.Color(102, 102, 102));
         jPanel23.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(171, 171, 171)));
@@ -1047,8 +1139,8 @@ public class MainApplet extends javax.swing.JApplet {
             .addComponent(jTabbedPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 116, Short.MAX_VALUE)
         );
 
-        jLayeredPane2.add(jPanel17);
         jPanel17.setBounds(0, 0, 240, 120);
+        jLayeredPane2.add(jPanel17, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jLabel8.setText("Format settings:");
 
@@ -1251,11 +1343,11 @@ public class MainApplet extends javax.swing.JApplet {
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1)
+            .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 620, Short.MAX_VALUE)
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1)
+            .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 348, Short.MAX_VALUE)
         );
 
         jSplitPane1.setLeftComponent(jPanel2);
@@ -1283,7 +1375,7 @@ public class MainApplet extends javax.swing.JApplet {
         imagePanel1.setLayout(imagePanel1Layout);
         imagePanel1Layout.setHorizontalGroup(
             imagePanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 778, Short.MAX_VALUE)
+            .addGap(0, 656, Short.MAX_VALUE)
         );
         imagePanel1Layout.setVerticalGroup(
             imagePanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1339,6 +1431,34 @@ public class MainApplet extends javax.swing.JApplet {
             }
         });
 
+        customButton1.setText("Entire Project");
+        customButton1.setIcon(DataStore.getImageIcon(9));
+        customButton1.setOffset(5);
+        customButton1.setSelectedIcon(DataStore.getImageIcon(8));
+        customButton1.setRolloverEnabled(true); // turn on before rollovers work
+        customButton1.setRolloverIcon(DataStore.getImageIcon(7));
+        customButton1.setBorder(null);
+        customButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                customButton1ActionPerformed(evt);
+            }
+        });
+
+        customButton2.setText("Selected Media");
+        customButton2.setIcon(DataStore.getImageIcon(9));
+        customButton2.setOffset(0);
+        customButton2.setSelectedIcon(DataStore.getImageIcon(8));
+        customButton2.setRolloverEnabled(true); // turn on before rollovers work
+        customButton2.setRolloverIcon(DataStore.getImageIcon(7));
+        customButton2.setBorder(null);
+        customButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                customButton2ActionPerformed(evt);
+            }
+        });
+
+        jLabel1.setText("Play: ");
+
         jButton4.setIcon(DataStore.getImageIcon(16));
 
         jButton4.setSelectedIcon(DataStore.getImageIcon(16));
@@ -1359,7 +1479,7 @@ public class MainApplet extends javax.swing.JApplet {
             videoSlider1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(videoSlider1Layout.createSequentialGroup()
                 .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 720, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 588, Short.MAX_VALUE)
                 .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         videoSlider1Layout.setVerticalGroup(
@@ -1383,7 +1503,12 @@ public class MainApplet extends javax.swing.JApplet {
                         .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 261, Short.MAX_VALUE)
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(customButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(customButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(videoSlider1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
             .addComponent(imagePanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -1400,7 +1525,11 @@ public class MainApplet extends javax.swing.JApplet {
                     .addComponent(jToggleButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(customButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(customButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel1))))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -1443,7 +1572,7 @@ public class MainApplet extends javax.swing.JApplet {
         );
         trackManagerPanel1Layout.setVerticalGroup(
             trackManagerPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1239, Short.MAX_VALUE)
+            .addGap(0, 1191, Short.MAX_VALUE)
         );
 
         jScrollPane2.setViewportView(trackManagerPanel1);
@@ -1498,11 +1627,11 @@ public class MainApplet extends javax.swing.JApplet {
         timeline2.setLayout(timeline2Layout);
         timeline2Layout.setHorizontalGroup(
             timeline2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1248, Short.MAX_VALUE)
+            .addGap(0, 1126, Short.MAX_VALUE)
         );
         timeline2Layout.setVerticalGroup(
             timeline2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1222, Short.MAX_VALUE)
+            .addGap(0, 612, Short.MAX_VALUE)
         );
 
         jScrollPane3.setViewportView(timeline2);
@@ -1535,7 +1664,7 @@ public class MainApplet extends javax.swing.JApplet {
         jPanel16.setLayout(jPanel16Layout);
         jPanel16Layout.setHorizontalGroup(
             jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jSplitPane2)
+            .addComponent(jSplitPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 1285, Short.MAX_VALUE)
         );
         jPanel16Layout.setVerticalGroup(
             jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1544,8 +1673,8 @@ public class MainApplet extends javax.swing.JApplet {
                 .addContainerGap())
         );
 
-        jLayeredPane1.add(jPanel16);
-        jPanel16.setBounds(0, 0, 1407, 918);
+        jPanel16.setBounds(0, 0, 1285, 918);
+        jLayeredPane1.add(jPanel16, javax.swing.JLayeredPane.DEFAULT_LAYER);
         //jPanel16.setBounds(0, 0, jLayeredPane1.getWidth(), jLayeredPane1.getHeight());
         //jPanel16.repaint();
         jPanel16.hide();
@@ -1561,8 +1690,8 @@ public class MainApplet extends javax.swing.JApplet {
             .addGap(0, 138, Short.MAX_VALUE)
         );
 
-        jLayeredPane1.add(jPanel24);
         jPanel24.setBounds(0, 0, 260, 138);
+        jLayeredPane1.add(jPanel24, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jPanel24.hide();
 
         jInternalFrame1.setBackground(new java.awt.Color(136, 136, 136));
@@ -1736,7 +1865,7 @@ public class MainApplet extends javax.swing.JApplet {
             .addGroup(jPanel25Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel25Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTabbedPane2)
+                    .addComponent(jTabbedPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 301, Short.MAX_VALUE)
                     .addComponent(jLabel10)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel25Layout.createSequentialGroup()
                         .addComponent(customRealButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1782,8 +1911,8 @@ public class MainApplet extends javax.swing.JApplet {
             .addComponent(jPanel25, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        jLayeredPane1.add(jInternalFrame1);
-        jInternalFrame1.setBounds(0, 0, 337, 500);
+        jInternalFrame1.setBounds(0, 0, 337, 499);
+        jLayeredPane1.add(jInternalFrame1, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jInternalFrame1.setVisible(false);
 
         jInternalFrame2.setBackground(new java.awt.Color(136, 136, 136));
@@ -1795,10 +1924,10 @@ public class MainApplet extends javax.swing.JApplet {
 
         jLabel19.setText("Frame 0 / ?");
 
-        jLabel20.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
+        jLabel20.setFont(new java.awt.Font("Tahoma", 0, 36));
         jLabel20.setText("0%");
 
-        jLabel21.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel21.setFont(new java.awt.Font("Tahoma", 0, 18));
         jLabel21.setText("Rendering video...");
 
         javax.swing.GroupLayout jPanel28Layout = new javax.swing.GroupLayout(jPanel28);
@@ -1844,8 +1973,8 @@ public class MainApplet extends javax.swing.JApplet {
             .addComponent(jPanel28, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        jLayeredPane1.add(jInternalFrame2);
-        jInternalFrame2.setBounds(0, 0, 579, 294);
+        jInternalFrame2.setBounds(0, 0, 579, 289);
+        jLayeredPane1.add(jInternalFrame2, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jInternalFrame2.setVisible(false);
 
         chromaKey.setBackground(new java.awt.Color(136, 136, 136));
@@ -1926,11 +2055,11 @@ public class MainApplet extends javax.swing.JApplet {
             .addGroup(jPanel35Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel35Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane10)
+                    .addComponent(jScrollPane10, javax.swing.GroupLayout.DEFAULT_SIZE, 118, Short.MAX_VALUE)
                     .addComponent(jLabel28)
-                    .addComponent(jTextField8)
+                    .addComponent(jTextField8, javax.swing.GroupLayout.DEFAULT_SIZE, 118, Short.MAX_VALUE)
                     .addComponent(jLabel29)
-                    .addComponent(jComboBox12, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jComboBox12, 0, 118, Short.MAX_VALUE)
                     .addComponent(customRealButton12, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(customRealButton11, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
@@ -1977,7 +2106,7 @@ public class MainApplet extends javax.swing.JApplet {
                 .addGroup(jPanel34Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel34Layout.createSequentialGroup()
                         .addGroup(jPanel34Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jComboBox11, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jComboBox11, 0, 138, Short.MAX_VALUE)
                             .addComponent(jPanel35, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel34Layout.createSequentialGroup()
@@ -2172,7 +2301,6 @@ public class MainApplet extends javax.swing.JApplet {
             jPanel37Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel37Layout.createSequentialGroup()
                 .addGroup(jPanel37Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jCheckBox6)
                     .addGroup(jPanel37Layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(jPanel37Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -2180,13 +2308,25 @@ public class MainApplet extends javax.swing.JApplet {
                             .addComponent(jLabel31)
                             .addComponent(jTextField9, javax.swing.GroupLayout.DEFAULT_SIZE, 134, Short.MAX_VALUE)
                             .addComponent(jLabel32)
-                            .addComponent(jComboBox14, 0, 134, Short.MAX_VALUE)
+                            .addComponent(jComboBox14, 0, 134, Short.MAX_VALUE)))
+                    .addGroup(jPanel37Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(jPanel37Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel33)
                             .addComponent(customRealButton15, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(customRealButton16, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel34)
+                            .addComponent(customRealButton16, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jCheckBox6)
+                    .addGroup(jPanel37Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel34))
+                    .addGroup(jPanel37Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(jPanel37Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(customRealButton17, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(customRealButton18, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(customRealButton18, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel37Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(jPanel37Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel35)
                             .addComponent(customRealButton19, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(customRealButton20, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))))
@@ -2361,7 +2501,7 @@ public class MainApplet extends javax.swing.JApplet {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel36Layout.createSequentialGroup()
                 .addComponent(jPanel34, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane9)
+                .addComponent(jScrollPane9, javax.swing.GroupLayout.DEFAULT_SIZE, 429, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel29, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -2394,8 +2534,8 @@ public class MainApplet extends javax.swing.JApplet {
             .addComponent(jPanel36, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        jLayeredPane1.add(chromaKey);
-        chromaKey.setBounds(0, 0, 793, 666);
+        chromaKey.setBounds(0, 0, 793, 665);
+        jLayeredPane1.add(chromaKey, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jInternalFrame2.setVisible(false);
 
         introScreen2.setBackground(new java.awt.Color(0, 0, 0));
@@ -2430,7 +2570,7 @@ public class MainApplet extends javax.swing.JApplet {
         jPanel31.setPreferredSize(new java.awt.Dimension(420, 270));
 
         jButton6.setBackground(new java.awt.Color(153, 153, 153));
-        jButton6.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
+        jButton6.setFont(new java.awt.Font("Tahoma", 0, 36));
         jButton6.setText("New Project");
         jButton6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -2439,7 +2579,7 @@ public class MainApplet extends javax.swing.JApplet {
         });
 
         jButton7.setBackground(new java.awt.Color(153, 153, 153));
-        jButton7.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
+        jButton7.setFont(new java.awt.Font("Tahoma", 0, 36));
         jButton7.setText("Open Project");
         jButton7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -2539,8 +2679,8 @@ public class MainApplet extends javax.swing.JApplet {
                     .addGroup(jPanel33Layout.createSequentialGroup()
                         .addGroup(jPanel33Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jTextField11, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jComboBox10, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jComboBox9, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(jComboBox10, javax.swing.GroupLayout.Alignment.LEADING, 0, 166, Short.MAX_VALUE)
+                            .addComponent(jComboBox9, javax.swing.GroupLayout.Alignment.LEADING, 0, 166, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel25)
                         .addGap(129, 129, 129))))
@@ -2590,12 +2730,12 @@ public class MainApplet extends javax.swing.JApplet {
         jProgressBar2.setName(""); // NOI18N
 
         jLabel22.setBackground(new java.awt.Color(204, 204, 204));
-        jLabel22.setFont(new java.awt.Font("Segoe UI Light", 2, 48)); // NOI18N
+        jLabel22.setFont(new java.awt.Font("Segoe UI Light", 2, 48));
         jLabel22.setForeground(new java.awt.Color(204, 204, 204));
         jLabel22.setText("Downloading Required Files...");
 
         jLabel23.setBackground(new java.awt.Color(204, 204, 204));
-        jLabel23.setFont(new java.awt.Font("Rockwell", 2, 48)); // NOI18N
+        jLabel23.setFont(new java.awt.Font("Rockwell", 2, 48));
         jLabel23.setForeground(new java.awt.Color(255, 255, 255));
         jLabel23.setText("32%");
 
@@ -3268,6 +3408,51 @@ private void customRealButton2ActionPerformed(java.awt.event.ActionEvent evt) {/
 	MediaManager.importMedia();
 }//GEN-LAST:event_customRealButton2ActionPerformed
 
+private void customRealButton3MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_customRealButton3MouseReleased
+// TODO add your handling code here:
+}//GEN-LAST:event_customRealButton3MouseReleased
+
+private void customRealButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_customRealButton3ActionPerformed
+MediaManager.addAllToTimeline();
+}//GEN-LAST:event_customRealButton3ActionPerformed
+
+private void jComboBox3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox3ActionPerformed
+MediaManager.selectedAlbum = jComboBox3.getSelectedIndex();
+refreshAlbumNameList();
+}//GEN-LAST:event_jComboBox3ActionPerformed
+
+private void customRealButton4MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_customRealButton4MouseReleased
+// TODO add your handling code here:
+}//GEN-LAST:event_customRealButton4MouseReleased
+
+private void customRealButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_customRealButton4ActionPerformed
+	MediaManager.importFolder();
+}//GEN-LAST:event_customRealButton4ActionPerformed
+
+private void customRealButton5MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_customRealButton5MouseReleased
+// TODO add your handling code here:
+}//GEN-LAST:event_customRealButton5MouseReleased
+
+private void customRealButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_customRealButton5ActionPerformed
+	String name = JOptionPane.showInputDialog(null, "Enter an album name (Max 30 characters)");
+	if(name == null){//Make sure the iser 
+		JOptionPane.showMessageDialog(null, "Invalid name", "Error", JOptionPane.INFORMATION_MESSAGE);
+		return;
+	}
+	if(name.equals("")){//
+		JOptionPane.showMessageDialog(null, "Invalid name", "Error", JOptionPane.INFORMATION_MESSAGE);
+		return;
+	}
+	if(name.length() > 30){
+		JOptionPane.showMessageDialog(null, "Name too long!", "Error", JOptionPane.INFORMATION_MESSAGE);
+		return;
+	}
+	
+	MediaPanelManager.createAlbum(name, true);
+	
+	
+}//GEN-LAST:event_customRealButton5ActionPerformed
+
 private void mediaPanel1MouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mediaPanel1MouseMoved
 	mediaPanel1.setMousePosition(evt.getX(), evt.getY());
 }//GEN-LAST:event_mediaPanel1MouseMoved
@@ -3281,6 +3466,15 @@ private void mediaPanel1MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRS
 		mediaPanel1.draggedMediaItem = null;
 	}
 }//GEN-LAST:event_mediaPanel1MouseReleased
+
+private void jTextField3KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField3KeyReleased
+	if(MediaManager.getSelectedAlbum() != null){
+		MediaManager.getSelectedAlbum().albumName = jTextField3.getText();
+		
+		
+		refreshAlbumNameList();
+	}
+}//GEN-LAST:event_jTextField3KeyReleased
 
 private void customRealButton6MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_customRealButton6MouseReleased
 // TODO add your handling code here:
@@ -3354,6 +3548,16 @@ System.out.println("save project");
 private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
 	DataManager.saveDataToFile();
 }//GEN-LAST:event_jMenuItem4ActionPerformed
+
+private void customButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_customButton2ActionPerformed
+	PreviewPanelManager.selectedItemView = true;
+	PreviewPanelManager.refreshViewModeButtons();
+}//GEN-LAST:event_customButton2ActionPerformed
+
+private void customButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_customButton1ActionPerformed
+	PreviewPanelManager.selectedItemView = false;
+	PreviewPanelManager.refreshViewModeButtons();
+}//GEN-LAST:event_customButton1ActionPerformed
 
 private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
 TimelineManager.setTimelinePosition(0);
@@ -3528,6 +3732,25 @@ private void chromaKeyFrame1MouseReleased(java.awt.event.MouseEvent evt) {//GEN-
 
 public void refreshAlbumNameList(){
 
+	if(MediaManager.getSelectedAlbum() != null){
+		jTextField3.setText(MediaManager.getSelectedAlbum().albumName);
+		jTextField3.setEnabled(true);
+	} else {
+		jTextField3.setText("");
+		jTextField3.setEnabled(false);
+	}
+
+	String[] names = new String[MediaPanelManager.albums.size()];
+
+	for(int index = 0; index < MediaPanelManager.albums.size(); index++){
+		if(MediaPanelManager.albums.get(index).albumName.length() == 0){
+			names[index] = "Unnamed";
+		} else {
+			names[index] = MediaPanelManager.albums.get(index).albumName;
+		}
+	}
+	jComboBox3.setModel(new javax.swing.DefaultComboBoxModel(names));
+	jComboBox3.setSelectedIndex(MediaManager.selectedAlbum);
 
 }
 
@@ -3924,18 +4147,18 @@ public void refreshAlbumNameList(){
 		return jLabel23;
 	}
     public void setCustomButton2(src.CustomButton customButton2) {
-
+		this.customButton2 = customButton2;
 	}
 
 	public src.CustomButton getCustomButton2() {
-		return null;
+		return customButton2;
 	}
 	public void setCustomButton1(src.CustomButton customButton1) {
-		
+		this.customButton1 = customButton1;
 	}
 
 	public src.CustomButton getCustomButton1() {
-		return null;
+		return customButton1;
 	}
     public void setjTextField8(javax.swing.JTextField jTextField8) {
 		this.jTextField8 = jTextField8;
@@ -3979,12 +4202,14 @@ public void refreshAlbumNameList(){
 	public javax.swing.JComboBox getjComboBox12() {
 		return jComboBox12;
 	}
-    // Variables declaration - do not modify//GEN-BEGIN:variables
+	// Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.ButtonGroup buttonGroup2;
     private javax.swing.ButtonGroup buttonGroup3;
     private javax.swing.JInternalFrame chromaKey;
     private src.ChromaKeyFrame chromaKeyFrame1;
+    private src.CustomButton customButton1;
+    private src.CustomButton customButton2;
     private src.CustomRealButton customRealButton1;
     private src.CustomRealButton customRealButton10;
     private src.CustomRealButton customRealButton11;
@@ -4000,6 +4225,9 @@ public void refreshAlbumNameList(){
     private src.CustomRealButton customRealButton20;
     private src.CustomRealButton customRealButton21;
     private src.CustomRealButton customRealButton22;
+    private src.CustomRealButton customRealButton3;
+    private src.CustomRealButton customRealButton4;
+    private src.CustomRealButton customRealButton5;
     private src.CustomRealButton customRealButton6;
     private src.CustomRealButton customRealButton7;
     private src.CustomRealButton customRealButton8;
@@ -4027,6 +4255,7 @@ public void refreshAlbumNameList(){
     private javax.swing.JComboBox jComboBox13;
     private javax.swing.JComboBox jComboBox14;
     private javax.swing.JComboBox jComboBox2;
+    private javax.swing.JComboBox jComboBox3;
     private javax.swing.JComboBox jComboBox4;
     private javax.swing.JComboBox jComboBox5;
     private javax.swing.JComboBox jComboBox6;
@@ -4035,6 +4264,7 @@ public void refreshAlbumNameList(){
     private javax.swing.JComboBox jComboBox9;
     private javax.swing.JInternalFrame jInternalFrame1;
     private javax.swing.JInternalFrame jInternalFrame2;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
@@ -4146,6 +4376,7 @@ public void refreshAlbumNameList(){
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField11;
     private javax.swing.JTextField jTextField2;
+    private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
     private javax.swing.JTextField jTextField5;
     private javax.swing.JTextField jTextField6;

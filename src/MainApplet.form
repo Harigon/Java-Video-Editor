@@ -1,6 +1,6 @@
-<?xml version="1.0" encoding="UTF-8" ?>
+<?xml version="1.1" encoding="UTF-8" ?>
 
-<Form version="1.9" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JAppletFormInfo">
+<Form version="1.5" maxVersion="1.7" type="org.netbeans.modules.form.forminfo.JAppletFormInfo">
   <NonVisualComponents>
     <Container class="javax.swing.JScrollPane" name="jScrollPane1">
       <AuxValues>
@@ -151,24 +151,22 @@
         <EventHandler event="ancestorResized" listener="java.awt.event.HierarchyBoundsListener" parameters="java.awt.event.HierarchyEvent" handler="jLayeredPane1AncestorResized"/>
       </Events>
 
-      <Layout class="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout">
-        <Property name="useNullLayout" type="boolean" value="true"/>
-      </Layout>
+      <Layout class="org.netbeans.modules.form.compat2.layouts.support.JLayeredPaneSupportLayout"/>
       <SubComponents>
         <Container class="javax.swing.JPanel" name="jPanel16">
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="//jPanel16.setBounds(0, 0, jLayeredPane1.getWidth(), jLayeredPane1.getHeight());&#xa;//jPanel16.repaint();&#xa;jPanel16.hide();"/>
           </AuxValues>
           <Constraints>
-            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="0" y="0" width="-1" height="-1"/>
+            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JLayeredPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JLayeredPaneSupportLayout$JLayeredPaneConstraintsDescription">
+              <JLayeredPaneConstraints x="0" y="0" width="-1" height="-1" layer="0" position="-1"/>
             </Constraint>
           </Constraints>
 
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jSplitPane2" alignment="0" max="32767" attributes="0"/>
+                  <Component id="jSplitPane2" alignment="0" pref="1285" max="32767" attributes="0"/>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
@@ -240,12 +238,12 @@
                       <Layout>
                         <DimensionLayout dim="0">
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jTabbedPane1" alignment="0" max="32767" attributes="0"/>
+                              <Component id="jTabbedPane1" alignment="0" pref="620" max="32767" attributes="0"/>
                           </Group>
                         </DimensionLayout>
                         <DimensionLayout dim="1">
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jTabbedPane1" alignment="0" max="32767" attributes="0"/>
+                              <Component id="jTabbedPane1" alignment="0" pref="348" max="32767" attributes="0"/>
                           </Group>
                         </DimensionLayout>
                       </Layout>
@@ -255,7 +253,6 @@
                             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                               <Color blue="88" green="88" red="88" type="rgb"/>
                             </Property>
-                            <Property name="enabled" type="boolean" value="false"/>
                           </Properties>
 
                           <Layout class="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout"/>
@@ -315,8 +312,12 @@
                                       <Group type="103" groupAlignment="0" attributes="0">
                                           <Group type="102" attributes="0">
                                               <EmptySpace max="-2" attributes="0"/>
-                                              <Component id="customRealButton2" min="-2" pref="112" max="-2" attributes="0"/>
-                                              <EmptySpace max="32767" attributes="0"/>
+                                              <Group type="103" groupAlignment="0" attributes="0">
+                                                  <Component id="customRealButton2" alignment="0" min="-2" pref="112" max="-2" attributes="0"/>
+                                                  <Component id="customRealButton4" alignment="0" min="-2" pref="112" max="-2" attributes="0"/>
+                                                  <Component id="customRealButton5" alignment="0" min="-2" pref="112" max="-2" attributes="0"/>
+                                              </Group>
+                                              <EmptySpace pref="6" max="32767" attributes="0"/>
                                           </Group>
                                       </Group>
                                     </DimensionLayout>
@@ -325,7 +326,11 @@
                                           <Group type="102" alignment="0" attributes="0">
                                               <EmptySpace max="-2" attributes="0"/>
                                               <Component id="customRealButton2" min="-2" pref="20" max="-2" attributes="0"/>
-                                              <EmptySpace pref="287" max="32767" attributes="0"/>
+                                              <EmptySpace max="-2" attributes="0"/>
+                                              <Component id="customRealButton4" min="-2" pref="20" max="-2" attributes="0"/>
+                                              <EmptySpace pref="230" max="32767" attributes="0"/>
+                                              <Component id="customRealButton5" min="-2" pref="20" max="-2" attributes="0"/>
+                                              <EmptySpace max="-2" attributes="0"/>
                                           </Group>
                                       </Group>
                                     </DimensionLayout>
@@ -341,6 +346,30 @@
                                       </Events>
                                       <AuxValues>
                                         <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="customRealButton2.setIcon(DataStore.getImageIcon(9));&#xa;customRealButton2.setOffset(0);&#xa;customRealButton2.setSelectedIcon(DataStore.getImageIcon(8));&#xa;customRealButton2.setRolloverEnabled(true); // turn on before rollovers work&#xa;customRealButton2.setRolloverIcon(DataStore.getImageIcon(7));&#xa;customRealButton2.setBorder(null);"/>
+                                      </AuxValues>
+                                    </Component>
+                                    <Component class="src.CustomRealButton" name="customRealButton4">
+                                      <Properties>
+                                        <Property name="text" type="java.lang.String" value="Import Folder"/>
+                                      </Properties>
+                                      <Events>
+                                        <EventHandler event="mouseReleased" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="customRealButton4MouseReleased"/>
+                                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="customRealButton4ActionPerformed"/>
+                                      </Events>
+                                      <AuxValues>
+                                        <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="customRealButton4.setIcon(DataStore.getImageIcon(9));&#xa;customRealButton4.setOffset(0);&#xa;customRealButton4.setSelectedIcon(DataStore.getImageIcon(8));&#xa;customRealButton4.setRolloverEnabled(true); // turn on before rollovers work&#xa;customRealButton4.setRolloverIcon(DataStore.getImageIcon(7));&#xa;customRealButton4.setBorder(null);"/>
+                                      </AuxValues>
+                                    </Component>
+                                    <Component class="src.CustomRealButton" name="customRealButton5">
+                                      <Properties>
+                                        <Property name="text" type="java.lang.String" value="Create New Album"/>
+                                      </Properties>
+                                      <Events>
+                                        <EventHandler event="mouseReleased" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="customRealButton5MouseReleased"/>
+                                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="customRealButton5ActionPerformed"/>
+                                      </Events>
+                                      <AuxValues>
+                                        <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="customRealButton5.setIcon(DataStore.getImageIcon(9));&#xa;customRealButton5.setOffset(-3);&#xa;customRealButton5.setSelectedIcon(DataStore.getImageIcon(8));&#xa;customRealButton5.setRolloverEnabled(true); // turn on before rollovers work&#xa;customRealButton5.setRolloverIcon(DataStore.getImageIcon(7));&#xa;customRealButton5.setBorder(null);"/>
                                       </AuxValues>
                                     </Component>
                                   </SubComponents>
@@ -362,15 +391,32 @@
                                   <Layout>
                                     <DimensionLayout dim="0">
                                       <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="jScrollPane8" alignment="0" max="32767" attributes="0"/>
+                                          <Group type="102" alignment="1" attributes="0">
+                                              <EmptySpace pref="206" max="32767" attributes="0"/>
+                                              <Component id="customRealButton3" min="-2" pref="112" max="-2" attributes="0"/>
+                                              <EmptySpace max="-2" attributes="0"/>
+                                          </Group>
+                                          <Group type="102" alignment="1" attributes="0">
+                                              <Component id="jComboBox3" pref="208" max="32767" attributes="0"/>
+                                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                              <Component id="jTextField3" min="-2" pref="100" max="-2" attributes="0"/>
+                                              <EmptySpace max="-2" attributes="0"/>
+                                          </Group>
+                                          <Component id="jScrollPane8" alignment="0" pref="328" max="32767" attributes="0"/>
                                       </Group>
                                     </DimensionLayout>
                                     <DimensionLayout dim="1">
                                       <Group type="103" groupAlignment="0" attributes="0">
                                           <Group type="102" alignment="1" attributes="0">
-                                              <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
+                                              <Group type="103" groupAlignment="3" attributes="0">
+                                                  <Component id="jComboBox3" alignment="3" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="jTextField3" alignment="3" min="-2" max="-2" attributes="0"/>
+                                              </Group>
+                                              <EmptySpace max="-2" attributes="0"/>
                                               <Component id="jScrollPane8" pref="255" max="32767" attributes="0"/>
-                                              <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
+                                              <EmptySpace max="-2" attributes="0"/>
+                                              <Component id="customRealButton3" min="-2" pref="20" max="-2" attributes="0"/>
+                                              <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
                                           </Group>
                                       </Group>
                                     </DimensionLayout>
@@ -410,6 +456,41 @@
                                         </Container>
                                       </SubComponents>
                                     </Container>
+                                    <Component class="src.CustomRealButton" name="customRealButton3">
+                                      <Properties>
+                                        <Property name="text" type="java.lang.String" value="Add All To Timeline"/>
+                                      </Properties>
+                                      <Events>
+                                        <EventHandler event="mouseReleased" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="customRealButton3MouseReleased"/>
+                                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="customRealButton3ActionPerformed"/>
+                                      </Events>
+                                      <AuxValues>
+                                        <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="customRealButton3.setIcon(DataStore.getImageIcon(9));&#xa;customRealButton3.setOffset(5);&#xa;customRealButton3.setSelectedIcon(DataStore.getImageIcon(8));&#xa;customRealButton3.setRolloverEnabled(true); // turn on before rollovers work&#xa;customRealButton3.setRolloverIcon(DataStore.getImageIcon(7));&#xa;customRealButton3.setBorder(null);"/>
+                                      </AuxValues>
+                                    </Component>
+                                    <Component class="javax.swing.JComboBox" name="jComboBox3">
+                                      <Properties>
+                                        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                                          <StringArray count="4">
+                                            <StringItem index="0" value="Item 1"/>
+                                            <StringItem index="1" value="Item 2"/>
+                                            <StringItem index="2" value="Item 3"/>
+                                            <StringItem index="3" value="Item 4"/>
+                                          </StringArray>
+                                        </Property>
+                                      </Properties>
+                                      <Events>
+                                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jComboBox3ActionPerformed"/>
+                                      </Events>
+                                    </Component>
+                                    <Component class="javax.swing.JTextField" name="jTextField3">
+                                      <Properties>
+                                        <Property name="text" type="java.lang.String" value="jTextField3"/>
+                                      </Properties>
+                                      <Events>
+                                        <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jTextField3KeyReleased"/>
+                                      </Events>
+                                    </Component>
                                   </SubComponents>
                                 </Container>
                                 <Container class="javax.swing.JPanel" name="jPanel23">
@@ -974,9 +1055,7 @@
                                 </Component>
                                 <Container class="javax.swing.JLayeredPane" name="jLayeredPane2">
 
-                                  <Layout class="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout">
-                                    <Property name="useNullLayout" type="boolean" value="true"/>
-                                  </Layout>
+                                  <Layout class="org.netbeans.modules.form.compat2.layouts.support.JLayeredPaneSupportLayout"/>
                                   <SubComponents>
                                     <Container class="javax.swing.JPanel" name="jPanel17">
                                       <Properties>
@@ -990,8 +1069,8 @@
                                         </Property>
                                       </Properties>
                                       <Constraints>
-                                        <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                                          <AbsoluteConstraints x="0" y="0" width="240" height="120"/>
+                                        <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JLayeredPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JLayeredPaneSupportLayout$JLayeredPaneConstraintsDescription">
+                                          <JLayeredPaneConstraints x="0" y="0" width="240" height="120" layer="0" position="-1"/>
                                         </Constraint>
                                       </Constraints>
 
@@ -1388,7 +1467,12 @@
                                               <Component id="jButton2" min="-2" pref="24" max="-2" attributes="0"/>
                                               <EmptySpace max="-2" attributes="0"/>
                                               <Component id="jButton3" min="-2" pref="24" max="-2" attributes="0"/>
-                                              <EmptySpace max="32767" attributes="0"/>
+                                              <EmptySpace pref="261" max="32767" attributes="0"/>
+                                              <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                                              <EmptySpace max="-2" attributes="0"/>
+                                              <Component id="customButton2" min="-2" pref="112" max="-2" attributes="0"/>
+                                              <EmptySpace max="-2" attributes="0"/>
+                                              <Component id="customButton1" min="-2" pref="112" max="-2" attributes="0"/>
                                           </Group>
                                           <Component id="videoSlider1" alignment="0" max="32767" attributes="0"/>
                                       </Group>
@@ -1410,6 +1494,11 @@
                                           <Component id="jButton1" min="-2" pref="20" max="-2" attributes="0"/>
                                           <Component id="jButton2" min="-2" pref="20" max="-2" attributes="0"/>
                                           <Component id="jButton3" min="-2" pref="20" max="-2" attributes="0"/>
+                                          <Group type="103" groupAlignment="3" attributes="0">
+                                              <Component id="customButton1" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
+                                              <Component id="customButton2" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
+                                              <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          </Group>
                                       </Group>
                                   </Group>
                               </Group>
@@ -1430,7 +1519,7 @@
                               <Layout>
                                 <DimensionLayout dim="0">
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <EmptySpace min="0" pref="778" max="32767" attributes="0"/>
+                                      <EmptySpace min="0" pref="656" max="32767" attributes="0"/>
                                   </Group>
                                 </DimensionLayout>
                                 <DimensionLayout dim="1">
@@ -1490,6 +1579,33 @@
                                 <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="jButton3.setIcon(DataStore.getImageIcon(13));&#xa;&#xa;jButton3.setSelectedIcon(DataStore.getImageIcon(15));&#xa;jButton3.setRolloverEnabled(true); // turn on before rollovers work&#xa;jButton3.setRolloverIcon(DataStore.getImageIcon(14));"/>
                               </AuxValues>
                             </Component>
+                            <Component class="src.CustomButton" name="customButton1">
+                              <Properties>
+                                <Property name="text" type="java.lang.String" value="Entire Project"/>
+                              </Properties>
+                              <Events>
+                                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="customButton1ActionPerformed"/>
+                              </Events>
+                              <AuxValues>
+                                <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="customButton1.setIcon(DataStore.getImageIcon(9));&#xa;customButton1.setOffset(5);&#xa;customButton1.setSelectedIcon(DataStore.getImageIcon(8));&#xa;customButton1.setRolloverEnabled(true); // turn on before rollovers work&#xa;customButton1.setRolloverIcon(DataStore.getImageIcon(7));&#xa;customButton1.setBorder(null);"/>
+                              </AuxValues>
+                            </Component>
+                            <Component class="src.CustomButton" name="customButton2">
+                              <Properties>
+                                <Property name="text" type="java.lang.String" value="Selected Media"/>
+                              </Properties>
+                              <Events>
+                                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="customButton2ActionPerformed"/>
+                              </Events>
+                              <AuxValues>
+                                <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="customButton2.setIcon(DataStore.getImageIcon(9));&#xa;customButton2.setOffset(0);&#xa;customButton2.setSelectedIcon(DataStore.getImageIcon(8));&#xa;customButton2.setRolloverEnabled(true); // turn on before rollovers work&#xa;customButton2.setRolloverIcon(DataStore.getImageIcon(7));&#xa;customButton2.setBorder(null);"/>
+                              </AuxValues>
+                            </Component>
+                            <Component class="javax.swing.JLabel" name="jLabel1">
+                              <Properties>
+                                <Property name="text" type="java.lang.String" value="Play: "/>
+                              </Properties>
+                            </Component>
                             <Container class="src.VideoSlider" name="videoSlider1">
 
                               <Layout>
@@ -1497,7 +1613,7 @@
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Group type="102" alignment="0" attributes="0">
                                           <Component id="jButton4" min="-2" pref="24" max="-2" attributes="0"/>
-                                          <EmptySpace pref="720" max="32767" attributes="0"/>
+                                          <EmptySpace pref="588" max="32767" attributes="0"/>
                                           <Component id="jButton5" min="-2" pref="24" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
@@ -1595,73 +1711,68 @@
                           <Layout>
                             <DimensionLayout dim="0">
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="102" alignment="1" attributes="0">
-                                      <EmptySpace pref="156" max="32767" attributes="0"/>
-                                      <Component id="jScrollPane3" min="-2" pref="1126" max="-2" attributes="0"/>
-                                      <EmptySpace max="-2" attributes="0"/>
-                                  </Group>
+                                  <EmptySpace min="0" pref="133" max="32767" attributes="0"/>
                               </Group>
                             </DimensionLayout>
                             <DimensionLayout dim="1">
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="jScrollPane3" min="-2" pref="1193" max="-2" attributes="0"/>
-                                      <EmptySpace pref="35" max="32767" attributes="0"/>
-                                  </Group>
+                                  <EmptySpace min="0" pref="1191" max="32767" attributes="0"/>
                               </Group>
                             </DimensionLayout>
                           </Layout>
-                          <SubComponents>
-                            <Container class="javax.swing.JScrollPane" name="jScrollPane3">
-                              <Properties>
-                                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                                  <Color blue="88" green="88" red="88" type="rgb"/>
-                                </Property>
-                                <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-                                  <Border info="null"/>
-                                </Property>
-                                <Property name="horizontalScrollBarPolicy" type="int" value="32"/>
-                                <Property name="verticalScrollBarPolicy" type="int" value="21"/>
-                              </Properties>
+                        </Container>
+                      </SubComponents>
+                    </Container>
+                    <Container class="javax.swing.JScrollPane" name="jScrollPane3">
+                      <Properties>
+                        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                          <Color blue="88" green="88" red="88" type="rgb"/>
+                        </Property>
+                        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                          <Border info="null"/>
+                        </Property>
+                        <Property name="horizontalScrollBarPolicy" type="int" value="32"/>
+                        <Property name="verticalScrollBarPolicy" type="int" value="21"/>
+                      </Properties>
+                      <Constraints>
+                        <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JSplitPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JSplitPaneSupportLayout$JSplitPaneConstraintsDescription">
+                          <JSplitPaneConstraints position="right"/>
+                        </Constraint>
+                      </Constraints>
 
-                              <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
-                              <SubComponents>
-                                <Container class="src.Timeline" name="timeline2">
-                                  <Properties>
-                                    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                                      <Color blue="79" green="79" red="79" type="rgb"/>
-                                    </Property>
-                                    <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                                      <Dimension value="[700, 612]"/>
-                                    </Property>
-                                  </Properties>
-                                  <Events>
-                                    <EventHandler event="mouseWheelMoved" listener="java.awt.event.MouseWheelListener" parameters="java.awt.event.MouseWheelEvent" handler="timeline2MouseWheelMoved"/>
-                                    <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="timeline2MousePressed"/>
-                                    <EventHandler event="mouseReleased" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="timeline2MouseReleased"/>
-                                    <EventHandler event="mouseDragged" listener="java.awt.event.MouseMotionListener" parameters="java.awt.event.MouseEvent" handler="timeline2MouseDragged"/>
-                                    <EventHandler event="mouseMoved" listener="java.awt.event.MouseMotionListener" parameters="java.awt.event.MouseEvent" handler="timeline2MouseMoved"/>
-                                    <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="timeline2KeyPressed"/>
-                                    <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="timeline2KeyReleased"/>
-                                  </Events>
+                      <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+                      <SubComponents>
+                        <Container class="src.Timeline" name="timeline2">
+                          <Properties>
+                            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                              <Color blue="79" green="79" red="79" type="rgb"/>
+                            </Property>
+                            <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+                              <Dimension value="[700, 612]"/>
+                            </Property>
+                          </Properties>
+                          <Events>
+                            <EventHandler event="mouseWheelMoved" listener="java.awt.event.MouseWheelListener" parameters="java.awt.event.MouseWheelEvent" handler="timeline2MouseWheelMoved"/>
+                            <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="timeline2MousePressed"/>
+                            <EventHandler event="mouseReleased" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="timeline2MouseReleased"/>
+                            <EventHandler event="mouseDragged" listener="java.awt.event.MouseMotionListener" parameters="java.awt.event.MouseEvent" handler="timeline2MouseDragged"/>
+                            <EventHandler event="mouseMoved" listener="java.awt.event.MouseMotionListener" parameters="java.awt.event.MouseEvent" handler="timeline2MouseMoved"/>
+                            <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="timeline2KeyPressed"/>
+                            <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="timeline2KeyReleased"/>
+                          </Events>
 
-                                  <Layout>
-                                    <DimensionLayout dim="0">
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <EmptySpace min="0" pref="1126" max="32767" attributes="0"/>
-                                      </Group>
-                                    </DimensionLayout>
-                                    <DimensionLayout dim="1">
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <EmptySpace min="0" pref="1176" max="32767" attributes="0"/>
-                                      </Group>
-                                    </DimensionLayout>
-                                  </Layout>
-                                </Container>
-                              </SubComponents>
-                            </Container>
-                          </SubComponents>
+                          <Layout>
+                            <DimensionLayout dim="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <EmptySpace min="0" pref="1126" max="32767" attributes="0"/>
+                              </Group>
+                            </DimensionLayout>
+                            <DimensionLayout dim="1">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <EmptySpace min="0" pref="612" max="32767" attributes="0"/>
+                              </Group>
+                            </DimensionLayout>
+                          </Layout>
                         </Container>
                       </SubComponents>
                     </Container>
@@ -1676,8 +1787,8 @@
             <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="jPanel24.hide();"/>
           </AuxValues>
           <Constraints>
-            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="0" y="0" width="-1" height="-1"/>
+            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JLayeredPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JLayeredPaneSupportLayout$JLayeredPaneConstraintsDescription">
+              <JLayeredPaneConstraints x="0" y="0" width="-1" height="-1" layer="0" position="-1"/>
             </Constraint>
           </Constraints>
 
@@ -1706,8 +1817,8 @@
             <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="jInternalFrame1.setVisible(false);"/>
           </AuxValues>
           <Constraints>
-            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="0" y="0" width="-1" height="-1"/>
+            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JLayeredPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JLayeredPaneSupportLayout$JLayeredPaneConstraintsDescription">
+              <JLayeredPaneConstraints x="0" y="0" width="-1" height="-1" layer="0" position="-1"/>
             </Constraint>
           </Constraints>
 
@@ -1737,7 +1848,7 @@
                       <Group type="102" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jTabbedPane2" alignment="0" max="32767" attributes="0"/>
+                              <Component id="jTabbedPane2" alignment="0" pref="301" max="32767" attributes="0"/>
                               <Component id="jLabel10" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Group type="102" alignment="1" attributes="0">
                                   <Component id="customRealButton7" min="-2" pref="112" max="-2" attributes="0"/>
@@ -2072,8 +2183,8 @@
             <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="jInternalFrame2.setVisible(false);"/>
           </AuxValues>
           <Constraints>
-            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="0" y="0" width="-1" height="-1"/>
+            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JLayeredPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JLayeredPaneSupportLayout$JLayeredPaneConstraintsDescription">
+              <JLayeredPaneConstraints x="0" y="0" width="-1" height="-1" layer="0" position="-1"/>
             </Constraint>
           </Constraints>
 
@@ -2178,8 +2289,8 @@
             <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="jInternalFrame2.setVisible(false);"/>
           </AuxValues>
           <Constraints>
-            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="0" y="0" width="-1" height="-1"/>
+            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JLayeredPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JLayeredPaneSupportLayout$JLayeredPaneConstraintsDescription">
+              <JLayeredPaneConstraints x="0" y="0" width="-1" height="-1" layer="0" position="-1"/>
             </Constraint>
           </Constraints>
 
@@ -2204,7 +2315,7 @@
                       <Group type="102" alignment="1" attributes="0">
                           <Component id="jPanel34" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jScrollPane9" max="32767" attributes="0"/>
+                          <Component id="jScrollPane9" pref="429" max="32767" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="jPanel29" min="-2" max="-2" attributes="0"/>
                       </Group>
@@ -2238,7 +2349,7 @@
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" attributes="0">
                                       <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="jComboBox11" alignment="0" max="32767" attributes="0"/>
+                                          <Component id="jComboBox11" alignment="0" pref="138" max="32767" attributes="0"/>
                                           <Component id="jPanel35" alignment="0" max="32767" attributes="0"/>
                                       </Group>
                                       <EmptySpace max="-2" attributes="0"/>
@@ -2306,11 +2417,11 @@
                               <Group type="102" attributes="0">
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="jScrollPane10" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="jScrollPane10" alignment="0" pref="118" max="32767" attributes="0"/>
                                       <Component id="jLabel28" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      <Component id="jTextField8" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="jTextField8" alignment="0" pref="118" max="32767" attributes="0"/>
                                       <Component id="jLabel29" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      <Component id="jComboBox12" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="jComboBox12" alignment="0" pref="118" max="32767" attributes="0"/>
                                       <Component id="customRealButton12" alignment="0" min="-2" pref="118" max="-2" attributes="0"/>
                                       <Component id="customRealButton11" alignment="0" min="-2" pref="118" max="-2" attributes="0"/>
                                   </Group>
@@ -2526,7 +2637,6 @@
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" attributes="0">
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="jCheckBox6" alignment="0" min="-2" max="-2" attributes="0"/>
                                       <Group type="102" attributes="0">
                                           <EmptySpace max="-2" attributes="0"/>
                                           <Group type="103" groupAlignment="0" attributes="0">
@@ -2535,12 +2645,31 @@
                                               <Component id="jTextField9" alignment="0" pref="134" max="32767" attributes="0"/>
                                               <Component id="jLabel32" alignment="0" min="-2" max="-2" attributes="0"/>
                                               <Component id="jComboBox14" alignment="0" pref="134" max="32767" attributes="0"/>
+                                          </Group>
+                                      </Group>
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <EmptySpace max="-2" attributes="0"/>
+                                          <Group type="103" groupAlignment="0" attributes="0">
                                               <Component id="jLabel33" alignment="0" min="-2" max="-2" attributes="0"/>
                                               <Component id="customRealButton15" alignment="0" min="-2" pref="118" max="-2" attributes="0"/>
                                               <Component id="customRealButton16" alignment="0" min="-2" pref="118" max="-2" attributes="0"/>
-                                              <Component id="jLabel34" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          </Group>
+                                      </Group>
+                                      <Component id="jCheckBox6" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <EmptySpace max="-2" attributes="0"/>
+                                          <Component id="jLabel34" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <EmptySpace max="-2" attributes="0"/>
+                                          <Group type="103" groupAlignment="0" attributes="0">
                                               <Component id="customRealButton17" alignment="0" min="-2" pref="118" max="-2" attributes="0"/>
                                               <Component id="customRealButton18" alignment="0" min="-2" pref="118" max="-2" attributes="0"/>
+                                          </Group>
+                                      </Group>
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <EmptySpace max="-2" attributes="0"/>
+                                          <Group type="103" groupAlignment="0" attributes="0">
                                               <Component id="jLabel35" alignment="0" min="-2" max="-2" attributes="0"/>
                                               <Component id="customRealButton19" alignment="0" min="-2" pref="118" max="-2" attributes="0"/>
                                               <Component id="customRealButton20" alignment="0" min="-2" pref="118" max="-2" attributes="0"/>
@@ -2962,8 +3091,8 @@
                           <Group type="102" alignment="0" attributes="0">
                               <Group type="103" groupAlignment="1" attributes="0">
                                   <Component id="jTextField11" alignment="0" min="-2" pref="166" max="-2" attributes="0"/>
-                                  <Component id="jComboBox10" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="jComboBox9" alignment="0" max="32767" attributes="1"/>
+                                  <Component id="jComboBox10" alignment="0" pref="166" max="32767" attributes="0"/>
+                                  <Component id="jComboBox9" alignment="0" pref="166" max="32767" attributes="1"/>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="jLabel25" min="-2" max="-2" attributes="0"/>

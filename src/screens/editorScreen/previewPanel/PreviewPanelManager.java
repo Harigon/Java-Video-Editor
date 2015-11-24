@@ -14,6 +14,13 @@ public class PreviewPanelManager {
 	 */
 	public static void refreshViewModeButtons(){
 
+		if(selectedItemView){
+			MainApplet.instance.getCustomButton2().setSelected(true);
+			MainApplet.instance.getCustomButton1().setSelected(false);
+		} else {
+			MainApplet.instance.getCustomButton2().setSelected(false);
+			MainApplet.instance.getCustomButton1().setSelected(true);
+		}
 	}
 	
 	
