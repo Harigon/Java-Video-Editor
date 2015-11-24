@@ -392,6 +392,32 @@ public class DecodingThread {
 						if(mediaVideoItem.frameDecoded[index] == 0){
 							mediaVideoItem.decodeFrame(index);
 							mediaVideoItem.frameDecoded[index] = 2;
+							
+							
+							
+							ArrayList<Track> localTracks = (ArrayList<Track>) src.screens.editorScreen.timeline.TimelineManager.tracks.clone();
+							if(localTracks != null){
+								for(Track trackInstance : localTracks){
+									ArrayList<TrackItem> localTrackItems = (ArrayList<TrackItem>) trackInstance.trackItems.clone();
+									if(localTrackItems == null){
+										continue;
+									}
+									for(TrackItem trackItem : localTrackItems){
+										if(trackItem == null){
+											continue;
+										}
+										if(trackItem instanceof TrackAudioItem){
+											continue;
+										}
+										if(trackItem.mediaItem == mediaVideoItem){
+											int start = trackItem.trackStartPosition;
+											Renderer.renderingStatus[start+index] = 0;
+										}
+									}
+								}
+							}
+							
+							
 						}
 						if(mediaVideoItem != itemToDecode || position != decodeFromPos){
 							break;

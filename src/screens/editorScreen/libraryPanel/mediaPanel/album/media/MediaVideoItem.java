@@ -54,6 +54,9 @@ import src.thirdPartyLibraries.Scalr;
 import src.thirdPartyLibraries.Scalr.Method;
 import src.thirdPartyLibraries.Scalr.Mode;
 import src.util.Misc;
+import src.video.decodeManager.AviHelper;
+import src.video.decodeManager.DecodeManager;
+import src.video.decodeManager.Mp4Helper;
 
 public class MediaVideoItem extends MediaItem {
 
@@ -65,7 +68,7 @@ public class MediaVideoItem extends MediaItem {
 	public int[] fullPixels;
 	public BufferedImage fullImage;
 	
-	
+	public MediaVideoItem instance;
 
 	
 	public byte[] frameDecoded;
@@ -85,35 +88,23 @@ public class MediaVideoItem extends MediaItem {
 	
 	public int totalFrames = 0;
 	
-	public int lastFrame = -1;
+	
 	
 	public boolean busy = false;
 	
+	public DecodeManager videoDecoder;
 	
 	public BufferedImage requestFrame(int frameIndex){
 		while(true){
 			if(!busy){
 				busy = true;
 				try {
-					if(formatType == 1){
-						BufferedImage image;
-						if(frameIndex == lastFrame+1){
-							image = frameGrab.getFrame();
-							System.out.println("grabbed next frame");
-						} else {
-							image = JCodecUtil.toBufferedImage(frameGrab.seekToFramePrecise(frameIndex).getNativeFrame());
-							System.out.println("wag1");
-						}
-						lastFrame = frameIndex;
-						busy = false;
-						
-						if(frameIndex == 0){
-							thumbnail = Scalr.resize(ImagePanel.getBI(image), Scalr.Method.ULTRA_QUALITY, Scalr.Mode.FIT_TO_HEIGHT, 67, null);
-						}
-						
-						
-						return image;
+					BufferedImage image = videoDecoder.requestFrame(frameIndex);
+					if(frameIndex == 0){
+						thumbnail = Scalr.resize(ImagePanel.getBI(image), Scalr.Method.ULTRA_QUALITY, Scalr.Mode.FIT_TO_HEIGHT, 67, null);
 					}
+					busy = false;
+					return image;
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -167,17 +158,19 @@ public class MediaVideoItem extends MediaItem {
 	
 	public Image getPreviewFrame(int frameIndex){
 		try {
-		if(formatType == 0 || formatType == 1){
+		if(formatType == 0 || formatType == 1 || formatType == MediaManager.FORMAT_AVI){
 			
 		int width;
 		int height;
 		int[] pixels;
 		
 		//
-		File tempFile = new File(DataStore.getCache()+"/"+getReferenceName()+""+frameIndex+".png");
+		File tempFile = new File(DataStore.getCache()+"/"+getReferenceName()+"/"+frameIndex+".png");
 		
 		Image image = null;
 		if(tempFile.exists()){
+			
+			
 			image = Toolkit.getDefaultToolkit().getImage(tempFile.getAbsolutePath());
 			ImageIcon imageicon = new ImageIcon(image);
 			width = imageicon.getIconWidth();
@@ -198,6 +191,7 @@ public class MediaVideoItem extends MediaItem {
 		}
 		
 		
+		System.out.println("image: "+image);
 		
 		Image resizedImage = Scalr.resize(ImagePanel.getBI(image), Scalr.Method.ULTRA_QUALITY, Scalr.Mode.FIT_TO_WIDTH, Project.getScaledWidth(), null);
 		if(resizedImage.getHeight(null) >= Project.getScaledHeight()){
@@ -209,36 +203,7 @@ public class MediaVideoItem extends MediaItem {
 		
 		
 		
-		if(formatType == 3){
-			BufferedImage image;
-			if(frameIndex == lastFrame+1){
-				image = frameGrab.getFrame();
-				
-				System.out.println("unpacked frame: "+frameIndex);
-				
-				
-				//for (int i = 0; i < 20; i++) {
-					  
-					//BufferedImage image2 = frameGrab.getFrame();
-					//System.out.println("unpacked framelol: "+frameIndex+", "+image2.getHeight());
-				//}
-				
-				
-			} else {
-				image = JCodecUtil.toBufferedImage(frameGrab.seekToFramePrecise(frameIndex).getNativeFrame());
-			}
-
-			Image resizedImage = image.getScaledInstance(Project.getScaledWidth(), Project.getScaledHeight(), Image.SCALE_FAST);
-			
-			/*
-			Image resizedImage = Scalr.resize(ImagePanel.getBI(image), Scalr.Method.ULTRA_QUALITY, Scalr.Mode.FIT_TO_WIDTH, Project.getScaledWidth(), null);
-			if(resizedImage.getHeight(null) >= Project.getScaledHeight()){
-				resizedImage = Scalr.resize(ImagePanel.getBI(image), Scalr.Method.ULTRA_QUALITY, Scalr.Mode.FIT_TO_HEIGHT, Project.getScaledHeight(), null);
-			}*/
-			
-			lastFrame = frameIndex;
-			return resizedImage;
-		}
+		
 		
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -263,7 +228,7 @@ public class MediaVideoItem extends MediaItem {
 			
 			for (Frame frame : gifView.gifDecoder.frameList) {
 				BufferedImage bufferedImage = ImagePanel.getBI(frame.pixels, frame.width, frame.height);
-				File picture = new File(DataStore.getCache()+"/"+getReferenceName()+""+index+".png");
+				File picture = new File(DataStore.getCache()+"/"+getReferenceName()+"/"+index+".png");
 			    ImageIO.write(bufferedImage, "png", picture);
 				index++;
 			}
@@ -313,7 +278,7 @@ public class MediaVideoItem extends MediaItem {
 	
 	public void decodeFrame(int frameIndex){
 		try {
-			if(new File(DataStore.getCache()+"/"+getReferenceName()+""+frameIndex+".png").exists()){
+			if(new File(DataStore.getCache()+"/"+getReferenceName()+"/"+frameIndex+".png").exists()){
 				return;
 			}
 			BufferedImage image = requestFrame(frameIndex);
@@ -322,7 +287,7 @@ public class MediaVideoItem extends MediaItem {
 			if(resizedImage.getHeight(null) >= Project.getScaledHeight()){
 				resizedImage = Scalr.resize(image, Scalr.Method.SPEED, Scalr.Mode.FIT_TO_HEIGHT, 300, null);
 			}
-			ImageIO.write(ImagePanel.getBI(resizedImage), "png", new File(DataStore.getCache()+"/"+getReferenceName()+""+frameIndex+".png"));
+			ImageIO.write(ImagePanel.getBI(resizedImage), "png", new File(DataStore.getCache()+"/"+getReferenceName()+"/"+frameIndex+".png"));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -376,73 +341,62 @@ public class MediaVideoItem extends MediaItem {
 	public MediaVideoItem(final String directory, Album album, int formatType) {
 		super(directory, album);
 		//createPreviewPixels();
-		this.formatType = formatType;
-		if(formatType == 0){
-			generatePreviewFile();
+
+
+		instance = this;
+
+		File dir = new File(DataStore.getCache()+"/"+getReferenceName()+"");
+		if(!dir.exists()){
+			dir.mkdir();
 		}
-		if(formatType == 1){
-			
-			/*
-			 * Run this process on a separate thread, to stop it freezing the GUI.
-			 */
-			new Thread() {
-				public void run() {
-			try {
-				
-				
-				FileChannelWrapper ch2 = null;
-				ch2 = NIOUtils.readableFileChannel(new File(directory));
-				
-				//double startSec = 51.632;
-				frameGrab = new FrameGrab(ch2);
-				
-				totalFrames = (int) frameGrab.demuxer.getVideoTrack().getFrameCount();
-				
-				double scale = frameGrab.demuxer.getVideoTrack().getTimescale();
-				double duration = frameGrab.demuxer.getVideoTrack().getDuration().getNum();
-				
-				framerate = (double) (scale/duration);
-			
-				System.out.println("fps: "+framerate+", scale: "+scale+", dur: "+duration);
-				
-				framerate = 23;
-				
-				
-				frameDecoded = new byte[totalFrames];
-				
-				File tempFile = new File(DataStore.getCache()+"/"+getReferenceName()+""+0+".png");
-				
-				Image image = null;
-				if(tempFile.exists()){
-					image = Toolkit.getDefaultToolkit().getImage(tempFile.getAbsolutePath());
-					ImageIcon imageicon = new ImageIcon(image);
-					int width = imageicon.getIconWidth();
-					int height = imageicon.getIconHeight();
-					int[] pixels = new int[width * height];
-					PixelGrabber pixelgrabber = new PixelGrabber(image, 0, 0, width, height, pixels, 0, width);
-					pixelgrabber.grabPixels();
-					thumbnail = Scalr.resize(ImagePanel.getBI(image), Scalr.Method.ULTRA_QUALITY, Scalr.Mode.FIT_TO_HEIGHT, 67, null);
+
+		this.formatType = formatType;
+
+		new Thread() {
+			public void run() {
+				try {
+
+
+					if(formatType == 1){
+						videoDecoder = new Mp4Helper(instance, directory);
+					}
+					
+					if(formatType == MediaManager.FORMAT_AVI){
+						videoDecoder = new AviHelper(instance, directory);
+					}
+
+
+
+					frameDecoded = new byte[totalFrames];
+
+					File tempFile = new File(DataStore.getCache()+"/"+getReferenceName()+"/"+0+".png");
+
+					Image image = null;
+					if(tempFile.exists()){
+						image = Toolkit.getDefaultToolkit().getImage(tempFile.getAbsolutePath());
+						ImageIcon imageicon = new ImageIcon(image);
+						int width = imageicon.getIconWidth();
+						int height = imageicon.getIconHeight();
+						int[] pixels = new int[width * height];
+						PixelGrabber pixelgrabber = new PixelGrabber(image, 0, 0, width, height, pixels, 0, width);
+						pixelgrabber.grabPixels();
+						thumbnail = Scalr.resize(ImagePanel.getBI(image), Scalr.Method.ULTRA_QUALITY, Scalr.Mode.FIT_TO_HEIGHT, 67, null);
+					}
+
+
+
+
+
+					DecodingThread.updateDecodingPriority();
+
+				} catch (Exception e) {
+					e.printStackTrace();
 				}
-				
-				
-				
-				
-				
-				DecodingThread.updateDecodingPriority();
-				
-				
-			} catch (Exception e) {
-				e.printStackTrace();
 			}
-
-
-
-				}
-	}.start();
-			}
+		}.start();
 	}
 
-	public FrameGrab frameGrab = null;
+	
 	
 	
 

@@ -261,6 +261,9 @@ public class AVI_Reader  {
     private  int               biClrImportant;      // no. of important colors (appear first in palette) (0 means all are important)
 
 
+    public double getFrameRate(){
+    	return 1e6 / (int)(dwStreamScale*1e6/dwStreamRate);
+    }
 
     public void run(File file){
         try {
@@ -283,7 +286,7 @@ public class AVI_Reader  {
     public BufferedImage getFrame(int index){
     	int[] pixels = null;
 		
-		long[] frameInfo = (long[])(getFrameInfos().get(index-1));
+		long[] frameInfo = (long[])(getFrameInfos().get(index));
 	
 		try {
 			RandomAccessFile rFile = null;

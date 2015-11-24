@@ -135,9 +135,18 @@ public class MainApplet extends javax.swing.JApplet {
 							
 							initComponents();
 							
-							MainApplet.getInstance().dataDownloader_mainPanel.setVisible(false);
-							MainApplet.getInstance().getjPanel15().setVisible(true);
+							//MainApplet.getInstance().dataDownloader_mainPanel.setVisible(false);
+							//MainApplet.getInstance().getjPanel15().setVisible(true);
 						
+							
+							MainApplet.getInstance().dataDownloader_mainPanel.setVisible(false);
+							MainApplet.getInstance().getjPanel32().setVisible(false);
+							MainApplet.getInstance().getjPanel16().setVisible(true);
+			
+							TaskThread.editorRunning = true;
+
+							Project.setupProject(NewProject.dimensions[6][0], NewProject.dimensions[6][1], NewProject.frameRates[0]);
+							
 							
 							 chromaKey.setVisible(false);
 							

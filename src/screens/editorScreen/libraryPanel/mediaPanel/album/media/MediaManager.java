@@ -123,6 +123,8 @@ public class MediaManager {
 		}
 	}
 	
+	public static final int FORMAT_AVI = 20;
+	
 	/**
 	 * @param file - The file to add.
 	 * @param album - The album to add the file too.
@@ -153,6 +155,10 @@ public class MediaManager {
 			
 			if(ext.equalsIgnoreCase("mov")){
 				MediaManager.addVideo(album, file.getAbsolutePath(), 1);
+			}
+			
+			if(ext.equalsIgnoreCase("avi")){
+				MediaManager.addVideo(album, file.getAbsolutePath(), FORMAT_AVI);
 			}
 			
 			if(ext.equalsIgnoreCase("mp3")){
