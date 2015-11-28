@@ -119,13 +119,15 @@ public class Timeline extends JPanel
 
 		if(draggedTrackItem != null){
 
+			
+			
 			Track track = src.screens.editorScreen.timeline.track.TrackManager.getTrackForItem(draggedTrackItem);
 
 			//re-add so its at the end of the list
 			track.trackItems.remove(draggedTrackItem);
 			track.trackItems.add(draggedTrackItem);
 
-			itemDraggedOffset = x-src.screens.editorScreen.timeline.track.TrackManager.trackPositionToPixelPosition(draggedTrackItem.trackStartPosition);
+			itemDraggedOffset = x-src.screens.editorScreen.timeline.track.TrackManager.trackPositionToPixelPosition(draggedTrackItem.getTrackStartPosition());
 			itemDraggedLastX = draggedTrackItem.trackStartPosition;
 			itemDraggedLastTrack = track;
 			itemDraggedLastMouseX = x;
@@ -236,10 +238,7 @@ public class Timeline extends JPanel
 				if(draggedTrackItem != null){
 					if(!trackInstance.trackItems.contains(draggedTrackItem)){
 						if(mouseY >= y && mouseY <= y+trackHeight){
-							
-							
 							src.screens.editorScreen.timeline.track.TrackManager.moveItemToNewTrack(draggedTrackItem, trackInstance);
-							
 						}
 					}
 				}
@@ -248,7 +247,7 @@ public class Timeline extends JPanel
 				for(TrackItem trackItem : trackInstance.trackItems){
 
 					int itemX = (src.screens.editorScreen.timeline.track.TrackManager.trackPositionToPixelPosition(trackItem.trackStartPosition));
-					int itemLength = src.screens.editorScreen.timeline.track.TrackManager.trackPositionToPixelPosition(trackItem.mediaDuration)-2;
+					int itemLength = (src.screens.editorScreen.timeline.track.TrackManager.trackPositionToPixelPosition(trackItem.mediaDuration-(trackItem.trackStartPosition-trackItem.getTrackStartPosition()))-2);
 					int itemY = y+4;
 					int itemHeight = trackHeight-8;
 
@@ -390,10 +389,10 @@ public class Timeline extends JPanel
 					
 					if(trackItem == draggedTrackItem){
 						
-						int currentPosition = trackItem.trackStartPosition;
+						int currentPosition = trackItem.getTrackStartPosition();
 						
 						for(TrackItem trackItem2 : trackInstance.trackItems){
-							int endingPosition = trackItem2.trackStartPosition+trackItem2.mediaDuration;
+							int endingPosition = trackItem2.getTrackStartPosition()+trackItem2.mediaDuration;
 							
 							if(currentPosition == endingPosition+1){
 							//	System.out.println("together: "+endingPosition+", "+currentPosition);

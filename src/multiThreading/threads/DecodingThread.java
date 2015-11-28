@@ -78,8 +78,8 @@ public class DecodingThread {
 					/*
 					 * Get the frame/X positions of the item on the track.
 					 */
-					int startX = trackItem.trackStartPosition;
-					int endX = trackItem.trackStartPosition+trackItem.mediaDuration;
+					int startX = trackItem.getTrackStartPosition();
+					int endX = trackItem.getTrackStartPosition()+trackItem.mediaDuration;
 
 					/*
 					 * Check if any of the item is positioned at the frame we want to render!
@@ -87,7 +87,7 @@ public class DecodingThread {
 					if(frameId >= startX && frameId <= endX){
 						if(trackItem instanceof TrackVideoItem && trackItem.mediaItem instanceof MediaVideoItem){
 							MediaVideoItem mediaVideoItem = (MediaVideoItem) trackItem.mediaItem;
-							int localFrameId = frameId-trackItem.trackStartPosition;
+							int localFrameId = frameId-trackItem.getTrackStartPosition();
 
 							if(mediaVideoItem.frameDecoded != null){
 
@@ -128,15 +128,15 @@ public class DecodingThread {
 						/*
 						 * Get the frame/X positions of the item on the track.
 						 */
-						int startX = trackItem.trackStartPosition;
-						int endX = trackItem.trackStartPosition+trackItem.mediaDuration;
+						int startX = trackItem.getTrackStartPosition();
+						int endX = trackItem.getTrackStartPosition()+trackItem.mediaDuration;
 
 						/*
 						 * Check if any of the item is positioned at the frame we want to render!
 						 */
 						if(src.screens.editorScreen.timeline.TimelineManager.timelinePosition <= endX){
 							MediaVideoItem mediaVideoItem = (MediaVideoItem) trackVideoItem.mediaItem;
-							int localFrameId = src.screens.editorScreen.timeline.TimelineManager.timelinePosition-trackItem.trackStartPosition;
+							int localFrameId = src.screens.editorScreen.timeline.TimelineManager.timelinePosition-trackItem.getTrackStartPosition();
 
 
 							if(mediaVideoItem.frameDecoded != null){
@@ -222,8 +222,8 @@ public class DecodingThread {
 						/*
 						 * Get the frame/X positions of the item on the track.
 						 */
-						int startX = trackItem.trackStartPosition;
-						int endX = trackItem.trackStartPosition+trackItem.mediaDuration;
+						int startX = trackItem.getTrackStartPosition();
+						int endX = trackItem.getTrackStartPosition()+trackItem.mediaDuration;
 
 						/*
 						 * Check if any of the item is positioned at the frame we want to render!
@@ -231,7 +231,7 @@ public class DecodingThread {
 
 
 						MediaVideoItem mediaVideoItem = (MediaVideoItem) trackVideoItem.mediaItem;
-						int localFrameId = src.screens.editorScreen.timeline.TimelineManager.timelinePosition-trackItem.trackStartPosition;
+						int localFrameId = src.screens.editorScreen.timeline.TimelineManager.timelinePosition-trackItem.getTrackStartPosition();
 
 
 						if(mediaVideoItem.frameDecoded != null){
@@ -283,8 +283,8 @@ public class DecodingThread {
 							/*
 							 * Get the frame/X positions of the item on the track.
 							 */
-							int startX = trackItem.trackStartPosition;
-							int endX = trackItem.trackStartPosition+trackItem.mediaDuration;
+							int startX = trackItem.getTrackStartPosition();
+							int endX = trackItem.getTrackStartPosition()+trackItem.mediaDuration;
 
 							/*
 							 * Check if any of the item is positioned at the frame we want to render!
@@ -410,7 +410,7 @@ public class DecodingThread {
 											continue;
 										}
 										if(trackItem.mediaItem == mediaVideoItem){
-											int start = trackItem.trackStartPosition;
+											int start = trackItem.getTrackStartPosition();
 											Renderer.renderingStatus[start+index] = 0;
 										}
 									}

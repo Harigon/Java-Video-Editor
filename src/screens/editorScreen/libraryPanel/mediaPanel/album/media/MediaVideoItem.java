@@ -191,7 +191,7 @@ public class MediaVideoItem extends MediaItem {
 		}
 		
 		
-		System.out.println("image: "+image);
+		//System.out.println("image: "+image);
 		
 		Image resizedImage = Scalr.resize(ImagePanel.getBI(image), Scalr.Method.ULTRA_QUALITY, Scalr.Mode.FIT_TO_WIDTH, Project.getScaledWidth(), null);
 		if(resizedImage.getHeight(null) >= Project.getScaledHeight()){

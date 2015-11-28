@@ -26,8 +26,8 @@ public class TrackItemManager {
 					/*
 					 * Get the frame/X positions of the item on the track.
 					 */
-					int startX = trackItem.trackStartPosition;
-					int endX = trackItem.trackStartPosition+trackItem.mediaDuration;
+					int startX = trackItem.getTrackStartPosition();
+					int endX = trackItem.getTrackStartPosition()+trackItem.mediaDuration;
 
 					/*
 					 * Check if any of the item is positioned at the frame we want to render!

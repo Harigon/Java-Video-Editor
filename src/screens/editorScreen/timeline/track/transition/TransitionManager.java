@@ -114,7 +114,7 @@ public class TransitionManager {
 	 */
 	public static void removeTransition(Transition transition){
 		src.screens.editorScreen.timeline.track.transition.TransitionManager.getTrackForTransition(transition).transitions.remove(transition);
-		for(int frameIndex = transition.item1.trackStartPosition; frameIndex < transition.item2.trackStartPosition+transition.item2.mediaDuration+1; frameIndex++){
+		for(int frameIndex = transition.item1.getTrackStartPosition(); frameIndex < transition.item2.trackStartPosition+transition.item2.mediaDuration+1; frameIndex++){
 			if(frameIndex+1 < Renderer.renderingStatus.length){
 				Renderer.renderingStatus[frameIndex] = 0;
 				

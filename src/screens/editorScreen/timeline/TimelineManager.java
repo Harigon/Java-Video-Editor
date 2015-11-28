@@ -47,8 +47,8 @@ public class TimelineManager {
 			if(Timeline.selectedTrackObject != null){
 				if(Timeline.selectedTrackObject instanceof TrackItem){
 					TrackItem trackItem = (TrackItem) Timeline.selectedTrackObject;
-					if(position > trackItem.trackStartPosition+trackItem.mediaDuration || position < trackItem.trackStartPosition){
-						position = trackItem.trackStartPosition;
+					if(position > trackItem.getTrackStartPosition()+trackItem.mediaDuration || position < trackItem.getTrackStartPosition()){
+						position = trackItem.getTrackStartPosition();
 					}
 				}
 			}
@@ -86,7 +86,7 @@ public class TimelineManager {
 					
 					
 					
-				if(timelinePosition > item.trackStartPosition){
+				if(timelinePosition > item.getTrackStartPosition()){
 					
 					MediaAudioItem mediaAudioItem = (MediaAudioItem) audioItem.mediaItem;
 					
@@ -192,6 +192,9 @@ public class TimelineManager {
 	public static void updateTimelineLength(){
 		int furthestPoint = getFurthestTimelinePoint();
 
+		
+		//System.out.println("furthest: "+furthestPoint);
+		
 		/*
 		 * Store a local version of the global track array-list (To prevent any concurrency issues).
 		 */

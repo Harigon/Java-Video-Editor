@@ -115,13 +115,39 @@ public class Renderer {
 						 * Get the frame/X positions of the item on the track.
 						 */
 						int startX = trackItem.trackStartPosition;
-						int endX = trackItem.trackStartPosition+trackItem.mediaDuration;
+						int endX = trackItem.getTrackStartPosition()+trackItem.mediaDuration;
 
+						if(!includeTransitions){
+							startX = trackItem.getTrackStartPosition();
+							endX = trackItem.getTrackStartPosition()+trackItem.mediaDuration;
+						}
 						
 						/*
 						 * Check if any of the item is positioned at the frame we want to render!
 						 */
 						if(frameId >= startX && frameId <= endX){
+							
+							
+							boolean isItem2 = false;
+							if(!includeTransitions){
+								
+								
+								
+								
+								for(Transition transition : trackInstance.transitions){
+									/*
+									 * Is the transition part of this item we are rendering?
+									 */
+									if(transition.item1 == trackItem){
+										isItem2 = true;
+									}
+								}
+								
+							}
+							if(isItem2){
+							continue;
+							}
+							//System.out.println("Track: "+trackItem.mediaItem.directory);
 							
 							Image previewImage = null;
 							BufferedImage frame = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
@@ -148,7 +174,7 @@ public class Renderer {
 							
 							if(trackItem instanceof TrackVideoItem){
 
-								int mediaFrameId = (frameId-trackItem.trackStartPosition)+trackItem.mediaStartPosition;
+								int mediaFrameId = (frameId-trackItem.getTrackStartPosition())+trackItem.mediaStartPosition;
 								
 								if(trackItem.mediaItem instanceof MediaVideoItem){
 								
@@ -215,7 +241,7 @@ public class Renderer {
 											Image fullImage = null;
 											
 											while(fullImage == null){
-												fullImage = mediaVideoItem.getFullFrame(frameId-trackItem.trackStartPosition, width, height);
+												fullImage = mediaVideoItem.getFullFrame(frameId-trackItem.getTrackStartPosition(), width, height);
 											}
 											
 											BufferedImage renderedEffectImage = itemVideoEffect.renderFrame(fullImage, trackItem);
@@ -309,34 +335,41 @@ public class Renderer {
 									 */
 									if(transition.item1 == trackItem){
 										
+										
+										
 										/*
 										 * Is the transition involved with the frame id we are actually rendering?
 										 */
-										if(frameId >= (transition.item1.trackStartPosition+transition.item1.mediaDuration)-transition.duration){
+										if(frameId >= (transition.item1.getTrackStartPosition()+transition.item1.mediaDuration)-transition.duration){
+											
 											
 											/*
 											 * Once again, make sure that item 1 is positioned BEFORE item2.
 											 */
-											if(transition.item1.trackStartPosition < transition.item2.trackStartPosition){
+											if(transition.item1.getTrackStartPosition() < transition.item2.getTrackStartPosition()){
 												
 													/*
 													 * Get the distance from the next item.
 													 */
 													int distanceFromOtherClip = (transition.item2.trackStartPosition-frameId)-1;
 
-													int hmm = (transition.item2.trackStartPosition-frameId) + transition.duration;
+		
+													//int hmm = (transition.item2.trackStartPosition-frameId) + transition.duration;
 													
 													/*
 													 * This is the first frame of the item we are transitioning TO.
 													 * (RECURSION is also being used here, to render another
 													 *  frame that is needed to render this frame!)
 													 */
-													int[] item2Pixels = renderFrame(transition.item2.trackStartPosition, false, width, height, fullQuality).clone();//recurring method
+													
+													int[] item2Pixels = renderFrame(frameId, false, width, height, fullQuality).clone();//recurring method
 
 													/*
 													 * Apply the transition to the frame, and return+assign the new pixel array.
 													 */
 													pixels = transition.renderTransitionFrame(pixels, item2Pixels, distanceFromOtherClip, transition.duration, width, height);
+													
+													//pixels = item2Pixels;
 													
 													if(pixels == null){
 														System.out.println("WARNING: null transition frame.");

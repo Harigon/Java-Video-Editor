@@ -7,6 +7,8 @@ import src.screens.editorScreen.timeline.track.trackItem.TrackAudioItem;
 import src.screens.editorScreen.timeline.track.trackItem.TrackImageItem;
 import src.screens.editorScreen.timeline.track.trackItem.TrackItem;
 import src.screens.editorScreen.timeline.track.trackItem.TrackTextItem;
+import src.screens.editorScreen.timeline.track.transition.Transition;
+import src.screens.editorScreen.timeline.track.transition.TransitionManager;
 
 public class TrackManager {
 
@@ -35,9 +37,7 @@ public class TrackManager {
 				continue;
 			}
 	
-			int endX = trackItem.trackStartPosition+trackItem.mediaDuration;
-			
-			
+			int endX = trackItem.getTrackStartPosition()+trackItem.mediaDuration;
 			if(endX > furthestPoint){
 				furthestPoint = endX;
 			}
@@ -53,7 +53,7 @@ public class TrackManager {
 		if(item != null){
 	
 			int draggedStartX = item.trackStartPosition;
-			int draggedEndY = item.mediaDuration+draggedStartX;
+			int draggedEndY = item.mediaDuration+draggedStartX - (item.trackStartPosition-item.getTrackStartPosition());
 	
 			if(TimelineManager.tracks != null){
 	
@@ -78,11 +78,20 @@ public class TrackManager {
 					}
 	
 					int startX = trackItem.trackStartPosition;
-					int endX = trackItem.mediaDuration + startX;
+					int endX = trackItem.mediaDuration + startX - (trackItem.trackStartPosition-trackItem.getTrackStartPosition());;
 	
 	
+					Transition transition = TransitionManager.itemPartOfAnyTransition(trackItem);
 	
-					if((draggedStartX >= startX && draggedStartX <= endX) || (draggedEndY >= startX && draggedStartX < startX)){
+					//boolean isTransition = false;
+					
+					//if(transition != null){
+						//if(transition.item2 == trackItem){
+							//isTransition = true;
+						//}
+					//}
+					
+					if(((draggedStartX >= startX && draggedStartX <= endX) /*&& !isTransition*/) || (draggedEndY >= startX && draggedStartX < startX)){
 						return false;
 					}
 	
@@ -131,8 +140,8 @@ public class TrackManager {
 	public static TrackItem getItemAtTrackRegion(Track track, int xFrom, int xTo){
 		if(track != null){
 			for(TrackItem trackItem : track.trackItems){
-				int startX = TrackManager.trackPositionToPixelPosition(trackItem.trackStartPosition);
-				int endX = TrackManager.trackPositionToPixelPosition(trackItem.mediaDuration + trackItem.trackStartPosition);
+				int startX = TrackManager.trackPositionToPixelPosition(trackItem.getTrackStartPosition());
+				int endX = TrackManager.trackPositionToPixelPosition(trackItem.mediaDuration + trackItem.getTrackStartPosition());
 				if((xFrom >= startX && xFrom <= endX) || (xTo <= endX && xTo >= startX)){
 					return trackItem;
 				}
@@ -150,9 +159,9 @@ public class TrackManager {
 		TrackItem closest = null;
 		if(TimelineManager.tracks != null){
 			for(TrackItem trackItem : track.trackItems){
-				if(trackItem.trackStartPosition > position){
+				if(trackItem.getTrackStartPosition() > position){
 					if(closest != null){
-						if(trackItem.trackStartPosition < closest.trackStartPosition){
+						if(trackItem.getTrackStartPosition() < closest.getTrackStartPosition()){
 							closest = trackItem;
 						}
 					} else {
@@ -173,7 +182,7 @@ public class TrackManager {
 		TrackItem closest = getNextItemAfterPosition(track, position);
 		int distance = -1;
 		if(closest != null){
-			distance = closest.trackStartPosition - position;
+			distance = closest.getTrackStartPosition() - position;
 		}
 		return distance;
 	

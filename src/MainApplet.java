@@ -3136,12 +3136,18 @@ public class MainApplet extends javax.swing.JApplet {
 
 	private void timeline2MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_timeline2MouseReleased
 
+		
 
 		int x = evt.getX();
 		int y = evt.getY();
 
+		
+		//System.
+		
 		if(!src.screens.editorScreen.timeline.track.TrackManager.validTrackItemPosition(timeline2.draggedTrackItem) && timeline2.croppedTrackItem == null){
+			//System.out.println(timeline2.draggedTrackItem.trackStartPosition+ " = "+timeline2.itemDraggedLastX);
 			timeline2.draggedTrackItem.trackStartPosition = timeline2.itemDraggedLastX;
+			
 			src.screens.editorScreen.timeline.track.TrackManager.moveItemToNewTrack(timeline2.draggedTrackItem, timeline2.itemDraggedLastTrack);
 		}
 		
@@ -3152,10 +3158,11 @@ public class MainApplet extends javax.swing.JApplet {
 
 		if(timeline2.draggedTrackItem != null){
 			if(timeline2.draggedTrackItem.trackStartPosition == timeline2.itemDraggedLastX && src.screens.editorScreen.timeline.track.TrackManager.getTrackForItem(timeline2.draggedTrackItem) == timeline2.itemDraggedLastTrack){
+				
 				src.screens.editorScreen.timeline.TimelineManager.timelinePosition = src.screens.editorScreen.timeline.track.TrackManager.pixelPositionToTrackPosition(x);
 				ImagePanel.generateFullQualityFrame();
 			} else {
-				for(int frameIndex = timeline2.draggedTrackItem.trackStartPosition; frameIndex < timeline2.draggedTrackItem.trackStartPosition+timeline2.draggedTrackItem.mediaDuration+1; frameIndex++){
+				for(int frameIndex = timeline2.draggedTrackItem.getTrackStartPosition(); frameIndex < timeline2.draggedTrackItem.getTrackStartPosition()+timeline2.draggedTrackItem.mediaDuration+1; frameIndex++){
 					if(frameIndex+1 < Renderer.renderingStatus.length){
 					Renderer.renderingStatus[frameIndex] = 0;
 					ImagePanel.generateFullQualityFrame();
