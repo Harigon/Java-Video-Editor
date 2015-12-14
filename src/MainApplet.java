@@ -1625,6 +1625,7 @@ public class MainApplet extends javax.swing.JApplet {
         });
         timeline2.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
+            	//System.out.println("hello")
                 timeline2KeyPressed(evt);
             }
             public void keyReleased(java.awt.event.KeyEvent evt) {
@@ -2973,7 +2974,7 @@ public class MainApplet extends javax.swing.JApplet {
 				}
 
 			}
-			int newEndPosition = src.screens.editorScreen.timeline.track.TrackManager.pixelPositionToTrackPosition(newTrackEndPosition);
+			int newEndPosition = newTrackEndPosition;
 			
 			int newDuration = newEndPosition-timeline2.croppedTrackItem.trackStartPosition;
 			
@@ -3307,16 +3308,24 @@ public class MainApplet extends javax.swing.JApplet {
 	}//GEN-LAST:event_timeline2MouseReleased
 
 private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-	PlayEvent.playing = false;
-	jToggleButton1.setSelected(false);
+	stopPlaying();
 }//GEN-LAST:event_jButton1ActionPerformed
 
 private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
-	if(!jToggleButton1.isSelected()){
-		jToggleButton1.setSelected(true);
+	play();
+}//GEN-LAST:event_jToggleButton1ActionPerformed
+
+public static void play(){
+	if(!MainApplet.instance.jToggleButton1.isSelected()){
+		MainApplet.instance.jToggleButton1.setSelected(true);
 	}
 	PlayEvent.playing = true;
-}//GEN-LAST:event_jToggleButton1ActionPerformed
+}
+
+public static void stopPlaying(){
+	PlayEvent.playing = false;
+	MainApplet.instance.jToggleButton1.setSelected(false);
+}
 
 private void transitionMediaPanel1MouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_transitionMediaPanel1MouseMoved
 transitionMediaPanel1.setMousePosition(evt.getX(), evt.getY());

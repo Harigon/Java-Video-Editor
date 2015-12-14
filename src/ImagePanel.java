@@ -212,8 +212,7 @@ public class ImagePanel extends JPanel
 	public static BufferedImage getBI(Image image) {
 		
 		BufferedImage finalimg = null;
-		
-
+	
 		try {
 			finalimg = new BufferedImage(image.getWidth(null), image.getHeight(null), BufferedImage.TYPE_INT_RGB);
 			
